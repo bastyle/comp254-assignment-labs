@@ -21,8 +21,14 @@ public class Exercise1 {
 //		list.swapTwoNodes("BBB", "DDD");
 //		System.out.println(list);
 		
-		list.swapTwoNodes2("BBB", "DDD");
-		System.out.println(list);
+		//list.swapTwoNodes2("BBB", "DDD");
+		//ok
+		//list.swap("BBB", "DDD");
+		//System.out.println(list);
+		
+		//validate head
+		list.swapHead("AAA", "DDD");
+		System.out.println("head;"+list);
 
 	}
 

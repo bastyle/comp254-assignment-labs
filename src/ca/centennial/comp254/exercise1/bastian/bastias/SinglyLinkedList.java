@@ -260,15 +260,28 @@ public class SinglyLinkedList<E> implements Cloneable {
 		System.out.println(list);
 		//
 	}
+
 	public void swapTwoNodes2(E from, E to) {
 		Node<E> fromNode = findNode(from);
 		Node<E> toNode = findNode(to);
 		Node<E> nodeAux = new Node<>(fromNode.getElement(), fromNode.getNext());
-		
+
 		fromNode.setNext(new Node<>(toNode.getElement(), toNode.getNext()));
 		toNode.setNext(new Node<>(nodeAux.getElement(), nodeAux.getNext()));
-		
-		
+
+	}
+
+	public void swapTwoNodes4(E from, E to) {
+		Node<E> fromNode = new Node<>(findNode(from).getElement(), findNode(from).getNext());
+		Node<E> toNode = new Node<>(findNode(from).getElement(), findNode(from).getNext());
+		Node<E> nodeAux = new Node<>(fromNode.getElement(), fromNode.getNext());
+		Node<E> walk = head;
+		while (walk != null) {
+			if (null != walk.getNext() && walk.getNext().getElement().equals(fromNode.getElement())) {
+				
+			}
+		}
+
 	}
 
 	public void swapTwoNodes(E from, E to) {
@@ -308,7 +321,7 @@ public class SinglyLinkedList<E> implements Cloneable {
 				System.out.println("walk.getNext().getElement>" + walk.getNext().getElement());
 				// break;
 				flag1 = true;
-			}else if (null != walk.getNext() && walk.getNext().getElement().equals(toNode.getElement()) && !flag2) {
+			} else if (null != walk.getNext() && walk.getNext().getElement().equals(toNode.getElement()) && !flag2) {
 				walk.setNext(fromNode);
 				flag2 = true;
 			}
@@ -317,13 +330,11 @@ public class SinglyLinkedList<E> implements Cloneable {
 			}
 			walk = walk.getNext();
 		}
-		
 
 	}
 
 	public void swapTwoNodes3(E from, E to) {
 
-		
 		Node<E> walk = head;
 		Node<E> walk2 = head;
 
@@ -341,7 +352,7 @@ public class SinglyLinkedList<E> implements Cloneable {
 				nodeAux = new Node<>(walk.getNext().getElement(), walk.getNext());
 				walk.setNext(toNode);
 				flag1 = true;
-			}else if (null != walk.getNext() && walk.getNext().getElement().equals(toNode.getElement()) && !flag2) {
+			} else if (null != walk.getNext() && walk.getNext().getElement().equals(toNode.getElement()) && !flag2) {
 				walk.setNext(fromNode);
 				flag2 = true;
 			}
@@ -350,9 +361,9 @@ public class SinglyLinkedList<E> implements Cloneable {
 			}
 			walk = walk.getNext();
 		}
-		
 
 	}
+
 	public Node<E> findNode(E elementToFind) {
 		Node walk = head;
 		// Node found = null;
@@ -368,6 +379,59 @@ public class SinglyLinkedList<E> implements Cloneable {
 		}
 		return null;
 
+	}
+	
+	public void swap(E from, E to) {
+		Node<E> prevFrom = getPrevNode(from);
+		Node<E> nodeFrom = prevFrom.getNext();
+		Node<E> prevTo = getPrevNode(to);
+		Node<E> nodeTo = prevTo.getNext();
+		Node<E> nextNodeTo = nodeTo.getNext();
+		System.out.println("prevFrom; "+prevFrom.getElement());
+		System.out.println("prevTo; "+prevTo.getElement());
+		Node<E> nextFrom = prevFrom.getNext().getNext();
+		Node<E> nextTo = prevTo.getNext().getNext();
+		System.out.println("nextFrom; "+nextFrom.getElement());
+		System.out.println("nextTo; "+nextTo.getElement());
+		//swap
+		prevFrom.setNext(nodeTo);
+		nodeTo.setNext(nextFrom);		
+		prevTo.setNext(nodeFrom);
+		nodeFrom.setNext(nextNodeTo);		
+	}
+	
+	public void swapHead(E from, E to) {
+		if(head.getElement().equals(from)) {//firs node is equal to head
+			Node<E> nodeFrom = head;
+			Node<E> prevTo = getPrevNode(to);
+			Node<E> nodeTo = prevTo.getNext();
+			Node<E> nextNodeTo = nodeTo.getNext();
+			Node<E> nextNodeFrom = head.getNext();			
+			nodeFrom.setNext(nextNodeTo);
+			nodeTo.setNext(nextNodeFrom);
+			prevTo.setNext(nodeFrom);
+			
+		}
+		//Node<E> prevFrom = getPrevNode(from);
+		
+		
+		
+				
+	}
+	
+	public Node<E> getPrevNode(E elementToFind) {
+		Node walk = head;
+		Node<E> nodeToFind = new Node<>(elementToFind, null);
+		while (walk != null) {
+			//if (nodeToFind.getNext().getElement().equals(walk.getElement())) {
+			System.out.println("walk> "+walk.getElement()+ " next; "+walk.getNext().getElement());
+			System.out.println("walk.getNext().getElement().equals(elementToFind) "+walk.getNext().getElement().equals(elementToFind));
+			if(null!= walk.getNext() && null!=walk.getNext().getElement() && walk.getNext().getElement().equals(elementToFind)) {
+				return walk;
+			}
+			walk = walk.getNext();
+		}
+		return null;
 	}
 
 }
