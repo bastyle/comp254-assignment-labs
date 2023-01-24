@@ -407,9 +407,18 @@ public class SinglyLinkedList<E> implements Cloneable {
 			Node<E> nodeTo = prevTo.getNext();
 			Node<E> nextNodeTo = nodeTo.getNext();
 			Node<E> nextNodeFrom = head.getNext();			
+			
+			
 			nodeFrom.setNext(nextNodeTo);
-			nodeTo.setNext(nextNodeFrom);
+			
 			prevTo.setNext(nodeFrom);
+			
+			
+			head = nodeTo;
+			head.setNext(nextNodeFrom);
+			
+			//nodeTo.setNext(nextNodeFrom);
+						
 			
 		}
 		//Node<E> prevFrom = getPrevNode(from);
