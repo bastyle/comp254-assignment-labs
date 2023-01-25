@@ -12,18 +12,18 @@ public class Exercise1 {
 		list.addFirst("AAA");
 		list.addLast("BBB");
 		list.addLast("CCC");
-		//
 		list.addLast("DDD");
 		list.addLast("EEE");
-		System.out.println(list);
-		//ok
-		list.swap("BBB", "DDD");
-		System.out.println("list: "+list);
+
+		list.finalSwap("BBB", "DDD");
+
+		list.finalSwap("AAA", "BBB");
 		
-		//validate head
-		list.swapHead("AAA", "DDD");
-		System.out.println("head;"+list);
+		list.finalSwap("DDD", "CCC");
 		
+		//validate tail
+		list.finalSwap("DDD", "EEE");
+
 
 	}
 

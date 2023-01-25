@@ -278,7 +278,7 @@ public class SinglyLinkedList<E> implements Cloneable {
 		Node<E> walk = head;
 		while (walk != null) {
 			if (null != walk.getNext() && walk.getNext().getElement().equals(fromNode.getElement())) {
-				
+
 			}
 		}
 
@@ -375,7 +375,7 @@ public class SinglyLinkedList<E> implements Cloneable {
 		}
 		return null;
 	}
-	
+
 	public void swap(E from, E to) {
 		Node<E> prevFrom = getPrevNode(from);
 		Node<E> nodeFrom = prevFrom.getNext();
@@ -388,15 +388,18 @@ public class SinglyLinkedList<E> implements Cloneable {
 		Node<E> nextTo = prevTo.getNext().getNext();
 //		System.out.println("nextFrom; "+nextFrom.getElement());
 //		System.out.println("nextTo; "+nextTo.getElement());
-		//swap
+		// swap
 		prevFrom.setNext(nodeTo);
-		nodeTo.setNext(nextFrom);		
+		nodeTo.setNext(nextFrom);
 		prevTo.setNext(nodeFrom);
-		nodeFrom.setNext(nextNodeTo);		
+		nodeFrom.setNext(nextNodeTo);
 	}
-	
-	public void swapHead(E from, E to) {
-		if(null == from || null == to) {
+
+	public void finalSwap(E from, E to) {
+		System.out.println("---- finalSwap method ----");
+		System.out.println("original list: " + this);
+		System.out.println("swapping node position " + from + " to: " + to + " position.");
+		if (null == from || null == to) {
 			return;
 		}
 		Node<E> nodeFrom = null;
@@ -404,24 +407,99 @@ public class SinglyLinkedList<E> implements Cloneable {
 		Node<E> nodeTo = null;
 		Node<E> nextNodeTo = null;
 		Node<E> nextNodeFrom = null;
-		if(head.getElement().equals(from)) {//is the first 'from' node the head?
+		if (head.getElement().equals(from) && !head.getNext().getElement().equals(to)) {
+			// is the first 'from' node the head? and the next element is not the ´to' node.
+			System.out.println("'from' node is the head and the next element is not the 'to' node.");
 			nodeFrom = head;
 			prevTo = getPrevNode(to);
 			nodeTo = prevTo.getNext();
 			nextNodeTo = nodeTo.getNext();
-			nextNodeFrom = head.getNext();			
+			nextNodeFrom = head.getNext();
 			nodeFrom.setNext(nextNodeTo);
 			prevTo.setNext(nodeFrom);
 			head = nodeTo;
 			head.setNext(nextNodeFrom);
+		} else if (head.getElement().equals(from) && head.getNext().getElement().equals(to)) {
+			// is the first 'from' node the head? and the next element is the ´to' node.
+			System.out.println("'from' node is the head and its next element is the 'to' node.");
+			nodeFrom = head;
+			nodeTo = head.getNext();
+			nextNodeTo = head.getNext().getNext();
+			head.setNext(nextNodeTo);
+			nodeTo.setNext(head);
+			head = nodeTo;
+		} else {
+			System.out.println("changing between nodes...");
+			Node<E> prevFrom = getPrevNode(from);
+			nodeFrom = prevFrom.getNext();
+			// validate if fromnode.next = tonode
+			if (nodeFrom.getNext().getElement().equals(to)) {
+				System.out.println("next node of 'from' node is the 'to' node.");
+				prevFrom = getPrevNode(from);
+				nextNodeTo = nodeFrom.getNext().getNext();
+				nodeTo = nodeFrom.getNext();
+				prevFrom.setNext(nodeTo);
+				nodeTo.setNext(nodeFrom);
+				nodeFrom.setNext(nextNodeTo);
+			} else {
+				System.out.println("normal...");
+				prevTo = getPrevNode(to);
+				nodeTo = prevTo.getNext();
+				nextNodeTo = nodeTo.getNext();
+				Node<E> nextFrom = prevFrom.getNext().getNext();
+				Node<E> nextTo = prevTo.getNext().getNext();
+				// swap
+				prevFrom.setNext(nodeTo);
+				nodeTo.setNext(nextFrom);
+				prevTo.setNext(nodeFrom);
+				nodeFrom.setNext(nextNodeTo);
+			}
+
 		}
+		System.out.println("final list: " + this);
 	}
-	
+
+	public void swapHead(E from, E to) {
+		System.out.println("---- swap method ----");
+		System.out.println("original list: " + this);
+		System.out.println("swapping node position " + from + " to: " + to + " position.");
+		if (null == from || null == to) {
+			return;
+		}
+		Node<E> nodeFrom = null;
+		Node<E> prevTo = null;
+		Node<E> nodeTo = null;
+		Node<E> nextNodeTo = null;
+		Node<E> nextNodeFrom = null;
+		if (head.getElement().equals(from) && !head.getNext().getElement().equals(to)) {
+			// is the first 'from' node the head? and the next element is not the ´to' node.
+			nodeFrom = head;
+			prevTo = getPrevNode(to);
+			nodeTo = prevTo.getNext();
+			nextNodeTo = nodeTo.getNext();
+			nextNodeFrom = head.getNext();
+			nodeFrom.setNext(nextNodeTo);
+			prevTo.setNext(nodeFrom);
+			head = nodeTo;
+			head.setNext(nextNodeFrom);
+		} else if (head.getElement().equals(from) && head.getNext().getElement().equals(to)) {
+			// is the first 'from' node the head? and the next element is the ´to' node.
+			nodeFrom = head;
+			nodeTo = head.getNext();
+			nextNodeTo = head.getNext().getNext();
+			head.setNext(nextNodeTo);
+			nodeTo.setNext(head);
+			head = nodeTo;
+		}
+		System.out.println("final list: " + this);
+	}
+
 	public Node<E> getPrevNode(E elementToFind) {
 		Node walk = head;
 		Node<E> nodeToFind = new Node<>(elementToFind, null);
 		while (walk != null) {
-			if(null!= walk.getNext() && null!=walk.getNext().getElement() && walk.getNext().getElement().equals(elementToFind)) {
+			if (null != walk.getNext() && null != walk.getNext().getElement()
+					&& walk.getNext().getElement().equals(elementToFind)) {
 				return walk;
 			}
 			walk = walk.getNext();
