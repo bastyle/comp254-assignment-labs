@@ -396,9 +396,9 @@ public class SinglyLinkedList<E> implements Cloneable {
 	}
 
 	public void finalSwap(E from, E to) {
-		System.out.println("---- finalSwap method ----");
+		System.out.println("--------- Swap method ----------");
 		System.out.println("original list: " + this);
-		System.out.println("swapping node position " + from + " to: " + to + " position.");
+		System.out.println("swapping node " + from + " to: " + to + " .");
 		if (null == from || null == to) {
 			return;
 		}
@@ -419,6 +419,10 @@ public class SinglyLinkedList<E> implements Cloneable {
 			prevTo.setNext(nodeFrom);
 			head = nodeTo;
 			head.setNext(nextNodeFrom);
+			if (to.equals(tail.getElement())) {
+				System.out.println("node 'to' is tail..");
+				tail = nodeFrom;
+			}
 		} else if (head.getElement().equals(from) && head.getNext().getElement().equals(to)) {
 			// is the first 'from' node the head? and the next element is the ´to' node.
 			System.out.println("'from' node is the head and its next element is the 'to' node.");
@@ -429,11 +433,11 @@ public class SinglyLinkedList<E> implements Cloneable {
 			nodeTo.setNext(head);
 			head = nodeTo;
 		} else {
-			System.out.println("changing between nodes...");
+//			System.out.println("changing between nodes...");
 			Node<E> prevFrom = getPrevNode(from);
 			nodeFrom = prevFrom.getNext();
 			// validate if fromnode.next = tonode
-			if (nodeFrom.getNext().getElement().equals(to)) {
+			if (nodeFrom.getNext().getElement().equals(to) && !tail.getElement().equals(to)) {
 				System.out.println("next node of 'from' node is the 'to' node.");
 				prevFrom = getPrevNode(from);
 				nextNodeTo = nodeFrom.getNext().getNext();
@@ -441,8 +445,17 @@ public class SinglyLinkedList<E> implements Cloneable {
 				prevFrom.setNext(nodeTo);
 				nodeTo.setNext(nodeFrom);
 				nodeFrom.setNext(nextNodeTo);
+			} else if (nodeFrom.getNext().getElement().equals(to) && tail.getElement().equals(to)) {
+				System.out.println("next node of 'from' node is the 'to' node and the 'to' node is the tail.");
+				prevFrom = getPrevNode(from);
+				nextNodeTo = nodeFrom.getNext().getNext();
+				nodeTo = nodeFrom.getNext();
+				prevFrom.setNext(nodeTo);
+				nodeTo.setNext(nodeFrom);
+				nodeFrom.setNext(nextNodeTo);
+				tail = nodeFrom;
 			} else {
-				System.out.println("normal...");
+				System.out.println("regular swapping between nodes...");
 				prevTo = getPrevNode(to);
 				nodeTo = prevTo.getNext();
 				nextNodeTo = nodeTo.getNext();

@@ -21,8 +21,12 @@ public class Exercise1 {
 		
 		list.finalSwap("DDD", "CCC");
 		
+		list.finalSwap("AAA", "EEE");
+		
 		//validate tail
 		list.finalSwap("DDD", "EEE");
+		
+		list.finalSwap("BBB", "AAA");
 
 
 	}
