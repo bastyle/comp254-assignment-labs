@@ -21,15 +21,5 @@ public class Exercise2 {
 		list1.concatenate2List(list2);
 		
 	}
-
 	
-	public static void concatenate2List(SinglyLinkedList<String>list1, SinglyLinkedList<String>list2) {
-		System.out.println("list1; "+list1);
-		System.out.println("list2; "+list2);
-//		SinglyLinkedList<String> list3 = new SinglyLinkedList<>();
-//		list3.addFirst(list1.first());
-//		System.out.println("final list;"+list3);
-		
-		
-	}
 }
