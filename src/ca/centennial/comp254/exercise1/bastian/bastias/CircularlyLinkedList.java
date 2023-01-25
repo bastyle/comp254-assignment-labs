@@ -226,28 +226,36 @@ public class CircularlyLinkedList<E> implements Cloneable {
 		//
 	}
 
+	protected CircularlyLinkedList<E> clone3() throws CloneNotSupportedException {
+		CircularlyLinkedList<E> other = new CircularlyLinkedList<E>();
+		System.out.println("other; " + other);
+		if (size > 0) {
+			for (int i = 0; i < size; i++) {
+				other.addLast(first());
+				rotate();
+			}
+//			System.out.println("other tail. " + other.tail.getElement());
+		}
+		return other;
+	}
+
 	protected CircularlyLinkedList<E> clone2() throws CloneNotSupportedException {
 		CircularlyLinkedList<E> other = (CircularlyLinkedList<E>) super.clone();
-		System.out.println("other; " + other);
 		if (size > 0) {
 			Node<E> walk = tail;
 			Node<E> otherTail = new Node<>(tail.getElement(), null);
 			other.tail = otherTail;
 			other.tail.setNext(other.tail);
-			System.out.println("ot> "+other);
-			// other.addFirst(otherHead.getElement());
-			for (int i = 0; i < size-1; i++) {
-				//Node<E> newest = new Node<>(walk.getElement(), null);// 1
-				//Node<E> newest = new Node<>(walk.getElement(), other.tail);// 1
+			for (int i = 0; i < size - 1; i++) {
 				Node<E> newest = new Node<>(walk.getNext().getElement(), other.tail);// 1
-				
 				otherTail.setNext(newest);
-				other.tail=newest;
-				//otherTail=newest;
-				//other.tail=otherTail;
+				other.tail = newest;
 				walk = walk.getNext();
 			}
-//			other.tail = otherTail;
+			other.tail = otherTail;
+			for (int i = 0; i < size - 1; i++) {
+				other.rotate();
+			}
 		}
 		return other;
 	}
@@ -256,7 +264,7 @@ public class CircularlyLinkedList<E> implements Cloneable {
 	@Override
 	protected CircularlyLinkedList<E> clone() throws CloneNotSupportedException {
 		CircularlyLinkedList<E> other = (CircularlyLinkedList<E>) super.clone();
-		System.out.println("other; " + other);
+		//System.out.println("other; " + other);
 		if (size > 0) {
 			Node<E> walk = tail;
 			Node<E> otherTail = new Node<>(tail.getElement(), null);
@@ -264,20 +272,13 @@ public class CircularlyLinkedList<E> implements Cloneable {
 
 			do {
 				walk = walk.getNext();
-				// walk.getElement();
-//				Node<E> otherTail = walk;
 				if (walk != tail) {
-					// sb.append(", ");
 					Node<E> newest = new Node<>(walk.getElement(), null);// 1
-					// other.addFirst(newest.getElement());
-
-					// otherTail.setNext(newest);
 					other.addLast(newest.getElement());
 					other.tail = newest;
 				}
 
 			} while (walk != tail);
-			// other.tail = otherTail;
 			System.out.println(other);
 		}
 		return other;
