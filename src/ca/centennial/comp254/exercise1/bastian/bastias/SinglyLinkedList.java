@@ -341,8 +341,7 @@ public class SinglyLinkedList<E> implements Cloneable {
 				prevTo = getPrevNode(to);
 				nodeTo = prevTo.getNext();
 				nextNodeTo = nodeTo.getNext();
-				Node<E> nextFrom = prevFrom.getNext().getNext();
-				Node<E> nextTo = prevTo.getNext().getNext();
+				Node<E> nextFrom = prevFrom.getNext().getNext();				
 				// swap
 				prevFrom.setNext(nodeTo);
 				nodeTo.setNext(nextFrom);
@@ -357,8 +356,8 @@ public class SinglyLinkedList<E> implements Cloneable {
 	
 
 	public Node<E> getPrevNode(E elementToFind) {
-		Node walk = head;
-		Node<E> nodeToFind = new Node<>(elementToFind, null);
+		Node<E> walk = head;
+		//Node<E> nodeToFind = new Node<>(elementToFind, null);
 		while (walk != null) {
 			if (null != walk.getNext() && null != walk.getNext().getElement()
 					&& walk.getNext().getElement().equals(elementToFind)) {
