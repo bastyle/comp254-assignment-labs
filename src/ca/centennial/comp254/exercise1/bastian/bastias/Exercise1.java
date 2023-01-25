@@ -16,19 +16,14 @@ public class Exercise1 {
 		list.addLast("DDD");
 		list.addLast("EEE");
 		System.out.println(list);
-		//
-//		System.out.println("finding node 'BBB' > ");
-//		list.swapTwoNodes("BBB", "DDD");
-//		System.out.println(list);
-		
-		//list.swapTwoNodes2("BBB", "DDD");
 		//ok
-		//list.swap("BBB", "DDD");
-		//System.out.println(list);
+		list.swap("BBB", "DDD");
+		System.out.println("list: "+list);
 		
 		//validate head
 		list.swapHead("AAA", "DDD");
 		System.out.println("head;"+list);
+		
 
 	}
 

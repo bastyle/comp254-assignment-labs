@@ -365,20 +365,15 @@ public class SinglyLinkedList<E> implements Cloneable {
 	}
 
 	public Node<E> findNode(E elementToFind) {
-		Node walk = head;
-		// Node found = null;
+		Node<E> walk = head;
 		Node<E> nodeToFind = new Node<>(elementToFind, null);
-//		System.out.println("finding node: " + nodeToFind.getElement());
 		while (walk != null) {
-//			System.out.println("walk> " + walk.getElement());
 			if (nodeToFind.getElement().equals(walk.getElement())) {
-//				System.out.println("found");
 				return walk;
 			}
 			walk = walk.getNext();
 		}
 		return null;
-
 	}
 	
 	public void swap(E from, E to) {
@@ -387,12 +382,12 @@ public class SinglyLinkedList<E> implements Cloneable {
 		Node<E> prevTo = getPrevNode(to);
 		Node<E> nodeTo = prevTo.getNext();
 		Node<E> nextNodeTo = nodeTo.getNext();
-		System.out.println("prevFrom; "+prevFrom.getElement());
-		System.out.println("prevTo; "+prevTo.getElement());
+//		System.out.println("prevFrom; "+prevFrom.getElement());
+//		System.out.println("prevTo; "+prevTo.getElement());
 		Node<E> nextFrom = prevFrom.getNext().getNext();
 		Node<E> nextTo = prevTo.getNext().getNext();
-		System.out.println("nextFrom; "+nextFrom.getElement());
-		System.out.println("nextTo; "+nextTo.getElement());
+//		System.out.println("nextFrom; "+nextFrom.getElement());
+//		System.out.println("nextTo; "+nextTo.getElement());
 		//swap
 		prevFrom.setNext(nodeTo);
 		nodeTo.setNext(nextFrom);		
@@ -401,40 +396,31 @@ public class SinglyLinkedList<E> implements Cloneable {
 	}
 	
 	public void swapHead(E from, E to) {
-		if(head.getElement().equals(from)) {//firs node is equal to head
-			Node<E> nodeFrom = head;
-			Node<E> prevTo = getPrevNode(to);
-			Node<E> nodeTo = prevTo.getNext();
-			Node<E> nextNodeTo = nodeTo.getNext();
-			Node<E> nextNodeFrom = head.getNext();			
-			
-			
+		if(null == from || null == to) {
+			return;
+		}
+		Node<E> nodeFrom = null;
+		Node<E> prevTo = null;
+		Node<E> nodeTo = null;
+		Node<E> nextNodeTo = null;
+		Node<E> nextNodeFrom = null;
+		if(head.getElement().equals(from)) {//is the first 'from' node the head?
+			nodeFrom = head;
+			prevTo = getPrevNode(to);
+			nodeTo = prevTo.getNext();
+			nextNodeTo = nodeTo.getNext();
+			nextNodeFrom = head.getNext();			
 			nodeFrom.setNext(nextNodeTo);
-			
 			prevTo.setNext(nodeFrom);
-			
-			
 			head = nodeTo;
 			head.setNext(nextNodeFrom);
-			
-			//nodeTo.setNext(nextNodeFrom);
-						
-			
 		}
-		//Node<E> prevFrom = getPrevNode(from);
-		
-		
-		
-				
 	}
 	
 	public Node<E> getPrevNode(E elementToFind) {
 		Node walk = head;
 		Node<E> nodeToFind = new Node<>(elementToFind, null);
 		while (walk != null) {
-			//if (nodeToFind.getNext().getElement().equals(walk.getElement())) {
-			System.out.println("walk> "+walk.getElement()+ " next; "+walk.getNext().getElement());
-			System.out.println("walk.getNext().getElement().equals(elementToFind) "+walk.getNext().getElement().equals(elementToFind));
 			if(null!= walk.getNext() && null!=walk.getNext().getElement() && walk.getNext().getElement().equals(elementToFind)) {
 				return walk;
 			}
