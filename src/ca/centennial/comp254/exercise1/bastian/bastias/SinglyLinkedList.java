@@ -261,8 +261,6 @@ public class SinglyLinkedList<E> implements Cloneable {
 		//
 	}
 
-	
-
 	public Node<E> findNode(E elementToFind) {
 		Node<E> walk = head;
 		Node<E> nodeToFind = new Node<>(elementToFind, null);
@@ -274,8 +272,6 @@ public class SinglyLinkedList<E> implements Cloneable {
 		}
 		return null;
 	}
-
-	
 
 	public void finalSwap(E from, E to) {
 		System.out.println("--------- Swap method ----------");
@@ -341,7 +337,7 @@ public class SinglyLinkedList<E> implements Cloneable {
 				prevTo = getPrevNode(to);
 				nodeTo = prevTo.getNext();
 				nextNodeTo = nodeTo.getNext();
-				Node<E> nextFrom = prevFrom.getNext().getNext();				
+				Node<E> nextFrom = prevFrom.getNext().getNext();
 				// swap
 				prevFrom.setNext(nodeTo);
 				nodeTo.setNext(nextFrom);
@@ -353,11 +349,9 @@ public class SinglyLinkedList<E> implements Cloneable {
 		System.out.println("final list: " + this);
 	}
 
-	
-
 	public Node<E> getPrevNode(E elementToFind) {
 		Node<E> walk = head;
-		//Node<E> nodeToFind = new Node<>(elementToFind, null);
+		// Node<E> nodeToFind = new Node<>(elementToFind, null);
 		while (walk != null) {
 			if (null != walk.getNext() && null != walk.getNext().getElement()
 					&& walk.getNext().getElement().equals(elementToFind)) {
@@ -366,6 +360,14 @@ public class SinglyLinkedList<E> implements Cloneable {
 			walk = walk.getNext();
 		}
 		return null;
+	}
+
+	public void concatenate2List(SinglyLinkedList<E> otherList) {
+		System.out.println("original list: " + this + " size: " + size);
+		this.tail.setNext(otherList.head);
+		tail = otherList.tail;
+		size += otherList.size;
+		System.out.println("concatenated list: " + this + " size: " + size);
 	}
 
 }
