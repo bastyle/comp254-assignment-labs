@@ -218,6 +218,7 @@ public class SinglyLinkedList<E> implements Cloneable {
 				otherTail = newest;
 				walk = walk.getNext();
 			}
+			otherTail=tail;
 		}
 		return other;
 	}
