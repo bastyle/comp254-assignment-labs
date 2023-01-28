@@ -226,19 +226,6 @@ public class CircularlyLinkedList<E> implements Cloneable {
 		//
 	}
 
-	protected CircularlyLinkedList<E> clone3() throws CloneNotSupportedException {
-		CircularlyLinkedList<E> other = new CircularlyLinkedList<E>();
-		System.out.println("other; " + other);
-		if (size > 0) {
-			for (int i = 0; i < size; i++) {
-				other.addLast(first());
-				rotate();
-			}
-//			System.out.println("other tail. " + other.tail.getElement());
-		}
-		return other;
-	}
-
 	protected CircularlyLinkedList<E> clone2() throws CloneNotSupportedException {
 		CircularlyLinkedList<E> other = (CircularlyLinkedList<E>) super.clone();
 		if (size > 0) {
@@ -260,26 +247,28 @@ public class CircularlyLinkedList<E> implements Cloneable {
 		return other;
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	protected CircularlyLinkedList<E> clone() throws CloneNotSupportedException {
-		CircularlyLinkedList<E> other = (CircularlyLinkedList<E>) super.clone();
-		//System.out.println("other; " + other);
-		if (size > 0) {
-			Node<E> walk = tail;
-			Node<E> otherTail = new Node<>(tail.getElement(), null);
-			other.addFirst(otherTail.getElement());
-
-			do {
+		CircularlyLinkedList<E> other = (CircularlyLinkedList<E>) super.clone(); // safe cast
+		if (size > 0) { // we need independent chain of nodes
+			Node<E> otherTail = new Node<>(tail.getNext().getElement(), null);// 1
+			E otherTailElem = otherTail.getElement();
+			other.tail = otherTail;
+			Node<E> walk = tail.getNext().getNext(); // 2
+			Node<E> recent = other.tail; // 1
+			while (walk != null) {
+				Node<E> newest = new Node<>(walk.getElement(), null);// 2 3 4
+				recent.setNext(newest); // link previous node to this one 1-2
+				recent = newest;
 				walk = walk.getNext();
-				if (walk != tail) {
-					Node<E> newest = new Node<>(walk.getElement(), null);// 1
-					other.addLast(newest.getElement());
-					other.tail = newest;
+				// System.out.println("walk.getElement " + walk.getElement() + "
+				// newest.getElement()" + newest.getElement());
+				if (walk.getElement().equals(otherTailElem)) {
+					recent.setNext(otherTail);
+					break;
 				}
-
-			} while (walk != tail);
-			System.out.println(other);
+			}
+			other.tail = recent;
 		}
 		return other;
 	}
