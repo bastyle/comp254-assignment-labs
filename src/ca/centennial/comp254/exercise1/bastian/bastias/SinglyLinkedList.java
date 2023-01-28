@@ -365,6 +365,7 @@ public class SinglyLinkedList<E> implements Cloneable {
 
 	public void concatenate2List(SinglyLinkedList<E> otherList) {
 		System.out.println("original list: " + this + " size: " + size);
+		System.out.println("new list to concatenate: " + otherList + " size: " + otherList.size);
 		this.tail.setNext(otherList.head);
 		tail = otherList.tail;
 		size += otherList.size;
