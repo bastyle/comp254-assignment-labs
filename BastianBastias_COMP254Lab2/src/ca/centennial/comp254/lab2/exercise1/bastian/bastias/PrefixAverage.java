@@ -1,3 +1,4 @@
+package ca.centennial.comp254.lab2.exercise1.bastian.bastias;
 /*
  * Copyright 2014, Michael T. Goodrich, Roberto Tamassia, Michael H. Goldwasser
  *
@@ -32,7 +33,7 @@ class PrefixAverage {
 
   /** Returns an array a such that, for all j, a[j] equals 
    * the average of x[0], ..., x[j]. 
-   * A[j] = (X[0] + X[1] + … + X[j])/(j+1)
+   * A[j] = (X[0] + X[1] + ï¿½ + X[j])/(j+1)
    * 
    * ******************************************************/
   // inner loop size will be 1, 2, 3, ..., n  (based on j=0,1,2,...,n-1)

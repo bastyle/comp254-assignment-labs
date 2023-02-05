@@ -1,3 +1,4 @@
+package ca.centennial.comp254.lab2.exercise1.bastian.bastias;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
