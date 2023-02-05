@@ -1,4 +1,4 @@
-package ca.centennial.comp254.lab2.exercise1.bastian.bastias;
+package ca.centennial.comp254.lab2.exercises.bastian.bastias;
 
 public class Exercises2 {
 

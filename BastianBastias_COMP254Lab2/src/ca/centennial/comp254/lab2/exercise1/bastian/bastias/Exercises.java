@@ -35,7 +35,7 @@ class Exercises {
 		example3(new int[] { 1, 2, 3 });
 	}
 
-	// running time is O(n)
+
 	/** Returns the sum of the integers in given array. */
 	public static int example1(int[] arr) {
 		int n = arr.length, total = 0; // O(1)
