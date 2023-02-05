@@ -22,6 +22,8 @@ package ca.centennial.comp254.lab2.exercise2.bastian.bastias;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import org.jfree.data.xy.XYSeries;
+
 /**
  * Demonstration of algorithms for computing the prefix averages of an array.
  *
@@ -73,7 +75,11 @@ class PrefixAverage {
 		long startTime = 0;
 		long endTime = 0;
 		long elapsed = 0;
-		int trials = 3;
+		int trials = 2;
+		final XYSeries s1 = new XYSeries("prefixAverage1");
+		final XYSeries s2 = new XYSeries("prefixAverage2");
+		s1.add(1, 1);
+		s2.add(1, 1);
 		for (int i = 0; i < trials; i++) {
 			prefixExperiment = new double[n];
 			for (int j = 0; j < n; j++) {
@@ -85,6 +91,7 @@ class PrefixAverage {
 			endTime = System.currentTimeMillis();
 			elapsed = endTime - startTime;
 			System.out.println(String.format("n: %9d took %12d milliseconds", n, elapsed));
+			s1.add(n, elapsed);
 			
 			System.out.println("Testing prefixAverage2...");
 			startTime = System.currentTimeMillis();
@@ -92,10 +99,16 @@ class PrefixAverage {
 			endTime = System.currentTimeMillis();
 			elapsed = endTime - startTime;
 			System.out.println(String.format("n: %9d took %12d milliseconds", n, elapsed));
+			s2.add(n, elapsed);
 			n *= 2;
 			System.out.println("---------------------------------------------------------");
 		}
 
+		final GraphicalRepresentation demo = new GraphicalRepresentation("Prefix Average Graph");
+		demo.printGraph(s1,s2);
+		demo.pack();
+		// RefineryUtilities.centerFrameOnScreen(demo);
+		demo.setVisible(true);
 	}
 
 }
