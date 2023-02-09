@@ -32,7 +32,8 @@ package ca.centennial.comp254.lab2.exercise1.bastian.bastias;
 class Exercises {
 
 	public static void main(String[] args) {
-		example3(new int[] { 1, 2, 3 });
+		example2(new int[] { 1, 2, 3 });
+//		example3(new int[] { 1, 2, 3 });
 	}
 
 
@@ -51,8 +52,12 @@ class Exercises {
 	public static int example2(int[] arr) {
 		int n = arr.length, total = 0; // O(1)
 		for (int j = 0; j < n; j += 2) // The for loop runs from 0 to n-1 with an increment of 2. This means that the
-										// loop will run n/2 times.
+										// loop will run n/2 times.\
+			{
+			System.out.println("it "+j);
 			total += arr[j]; // O(1)
+			}
+			
 		return total; // O(1)
 		// The overall time complexity is O(n/2), because the dominant part of the
 		// function is the loop that runs n/2 times. This is a linear time complexity,

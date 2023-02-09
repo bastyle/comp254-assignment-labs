@@ -25,6 +25,7 @@ public class GraphicalRepresentation extends ApplicationFrame {
 
 	public void printGraph(XYSeries s1, XYSeries s2) {
 		final XYSeriesCollection dataset = new XYSeriesCollection();
+		dataset.setIntervalWidth(0);
 		dataset.addSeries(s1);
 		dataset.addSeries(s2);
 		
@@ -43,7 +44,7 @@ public class GraphicalRepresentation extends ApplicationFrame {
 		//chart.setBackgroundPaint(Color.white);
 		//plot.setOutlinePaint(Color.black);
 		final ChartPanel chartPanel = new ChartPanel(chart);
-		chartPanel.setPreferredSize(new java.awt.Dimension(500, 270));
+		chartPanel.setPreferredSize(new java.awt.Dimension(720, 600));
 		setContentPane(chartPanel);
 
 	}

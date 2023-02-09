@@ -99,7 +99,7 @@ class PrefixAverage {
 			endTime = System.currentTimeMillis();
 			elapsed = endTime - startTime;
 			System.out.println(String.format("n: %9d took %12d milliseconds", n, elapsed));
-			s2.add(n, elapsed);
+			s2.add(n, elapsed<1?1:elapsed);
 			n *= 2;
 			System.out.println("---------------------------------------------------------");
 		}
