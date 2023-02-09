@@ -1,7 +1,5 @@
 package ca.centennial.comp254.lab2.exercise2.bastian.bastias;
 
-import java.awt.Color;
-
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -14,6 +12,11 @@ import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
 public class GraphicalRepresentation extends ApplicationFrame {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	public GraphicalRepresentation(final String title) {
 
