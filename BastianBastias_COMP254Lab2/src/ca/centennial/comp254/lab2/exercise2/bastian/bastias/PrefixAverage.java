@@ -70,12 +70,12 @@ class PrefixAverage {
 	}
 
 	public static void main(String[] args) {
-		int n = 50000; // starting value
+		int n = 10000; // starting value
 		double[] prefixExperiment;
 		long startTime = 0;
 		long endTime = 0;
 		long elapsed = 0;
-		int trials = 2;
+		int trials = 5;
 		final XYSeries s1 = new XYSeries("prefixAverage1");
 		final XYSeries s2 = new XYSeries("prefixAverage2");
 		s1.add(1, 1);

@@ -29,7 +29,7 @@ public class GraphicalRepresentation extends ApplicationFrame {
 		dataset.addSeries(s1);
 		dataset.addSeries(s2);
 		
-		final JFreeChart chart = ChartFactory.createXYLineChart("Prefix Average Graph", // chart title
+		final JFreeChart chart = ChartFactory.createXYLineChart("prefixAverage1 vs prefixAverage2 Graph", // chart title
 				"Category", // domain axis label
 				"Value", // range axis label
 				dataset, // data
