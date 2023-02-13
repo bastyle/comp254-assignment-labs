@@ -1,5 +1,10 @@
 package ca.centennial.comp254.lab2.exercise3.bastian.bastias;
 
+/**
+ * 
+ * @author basti
+ *
+ */
 public class Exercise3 {
 
 	public static int findMissingNumber(int[] nums) {
