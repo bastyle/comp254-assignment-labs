@@ -1,5 +1,7 @@
 package ca.centennial.comp254.lab3.exercise2.bastian.bastias;
 
+import java.util.Scanner;
+
 public class Palindrome {
 
 	/*
@@ -11,24 +13,30 @@ public class Palindrome {
 	 * and even-length strings).
 	 */
 	public static void main(String[] args) {
-		System.out.println(isPalindrome("abcddcba"));
+//		System.out.println("racecar ? "+isPalindrome("racecar"));
+//		System.out.println("mom ? "+isPalindrome("mom"));
+//		System.out.println("abcddcba ? "+isPalindrome("abcddcba"));
+//		System.out.println("ab ? "+isPalindrome("ab"));
+//		System.out.println("ab ? "+isPalindrome("abaaba"));
+		Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a string to check if it's a palindrome: ");
+        String string = scanner.nextLine();
+        System.out.println(string+" is palindrome: "+isPalindrome(string));
 	}
 
 	private static boolean isPalindrome(final String word) {
-		System.out.println("word: " + word);
+		//System.out.println("word: " + word);
 		final int wordLenght = word == null ? 0 : word.length();
 		if (wordLenght <= 1) {
-			System.out.println("it is");
+			//System.out.println("yes it is");
 			return true;
 		}
 		final String aux = word.substring(0, 1);
-//		System.out.println("aux: " + aux);
 		if (word.endsWith(aux)) {
-			System.out.println("eq");
+			//System.out.println("eq");
 			return isPalindrome(word.substring(1, wordLenght - 1));
-			//return;
 		}
-		System.out.println("is not");
+		//System.out.println("is not");
 		return false;
 
 	}
