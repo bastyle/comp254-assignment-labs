@@ -11,8 +11,7 @@ public class ProductOf2Int {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		System.out.println(productOf(5, 52));
+		System.out.println(productOf(5, 25));
 	}
 
 	private static int productOf(int m, int n) {
