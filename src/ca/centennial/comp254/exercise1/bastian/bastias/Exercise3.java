@@ -1,5 +1,10 @@
 package ca.centennial.comp254.exercise1.bastian.bastias;
 
+/**
+ * 
+ * @author Bastian Bastias. Student id; 301242983
+ *
+ */
 public class Exercise3 {
 
 	public static void main(String[] args) {
