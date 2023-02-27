@@ -291,6 +291,18 @@ public class DoublyLinkedList<E> {
 		list.swap("BOS", "MAN");
 		System.out.println(list);
 		//
+
+		// concatenate
+		System.out.println("concatenate");
+		DoublyLinkedList<String> list3 = new DoublyLinkedList<String>();
+		list3.addFirst("MSP");
+		list3.addLast("ATL");
+		list3.addLast("BOS");
+		DoublyLinkedList<String> list4 = new DoublyLinkedList<String>();
+		list4.addFirst("MAN");
+		list4.addLast("JAZ");
+		list4.addLast("BAS");
+		System.out.println(list3.concatenate(list3, list4));
 	}
 
 	private void swap(E element1, E element2) {
@@ -302,17 +314,25 @@ public class DoublyLinkedList<E> {
 		Node<E> node2Prev = node2.prev;
 		Node<E> node1Next = node1.getNext();
 		Node<E> node2Next = node2.getNext();
-		
+
 		node1Prev.setNext(node2);
 		node2.setNext(node1Next);
 		node2Prev.setNext(node1);
 		node1.setNext(node2Next);
-		
-//		node2.setPrev(node1Prev);
-//		node1.setPrev(node2Prev);				
-//		node1.setNext(node2Next);
-		
 
+	}
+
+	private DoublyLinkedList<E> concatenate(DoublyLinkedList<E> ls1, DoublyLinkedList<E> ls2) {
+		DoublyLinkedList<E> ls3 = new DoublyLinkedList<>();
+		System.out.println("list 1 " + ls1);
+		System.out.println("list 2 " + ls2);
+		ls3.header = ls1.header;
+		ls3.trailer = ls1.trailer;
+		ls3.trailer.setNext(ls2.header.getNext());
+		//ls3.trailer=ls2.header;
+		ls3.trailer = ls2.trailer;
+		ls3.size = ls1.size() + ls2.size();
+		return ls3;
 	}
 
 	private Node<E> getNode(E element) {

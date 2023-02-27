@@ -369,5 +369,25 @@ public class SinglyLinkedList<E> implements Cloneable {
 		size += otherList.size;
 		System.out.println("concatenated list: " + this + " size: " + size);
 	}
+	
+	
+	public void deleteNode(int i) {
+	    if (i < 0 || i >= size) {
+	        System.out.println("Node at index " + i + " does not exist.");
+	        return;
+	    }
+	    if (i == 0) {
+	        head = head.next;
+	        size--;
+	        return;
+	    }
+	    Node current = head;
+	    for (int j = 0; j < i - 1; j++) {
+	        current = current.next;
+	    }
+	    current.next = current.next.next;
+	    size--;
+	}
+
 
 }
