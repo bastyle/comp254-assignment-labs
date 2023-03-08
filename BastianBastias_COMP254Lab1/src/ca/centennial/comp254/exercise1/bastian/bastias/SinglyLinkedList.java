@@ -274,7 +274,7 @@ public class SinglyLinkedList<E> implements Cloneable {
 		return null;
 	}
 
-	public void finalSwap(E from, E to) {
+	public void swapNodes(E from, E to) {
 		System.out.println("--------- Swap method ----------");
 		System.out.println("original list: " + this);
 		System.out.println("swapping node " + from + " to: " + to + " .");
@@ -312,10 +312,8 @@ public class SinglyLinkedList<E> implements Cloneable {
 			nodeTo.setNext(head);
 			head = nodeTo;
 		} else {
-//			System.out.println("changing between nodes...");
 			Node<E> prevFrom = getPrevNode(from);
 			nodeFrom = prevFrom.getNext();
-			// validate if fromnode.next = tonode
 			if (nodeFrom.getNext().getElement().equals(to) && !tail.getElement().equals(to)) {
 				System.out.println("next node of 'from' node is the 'to' node.");
 				prevFrom = getPrevNode(from);
@@ -371,5 +369,25 @@ public class SinglyLinkedList<E> implements Cloneable {
 		size += otherList.size;
 		System.out.println("concatenated list: " + this + " size: " + size);
 	}
+	
+	
+	public void deleteNode(int i) {
+	    if (i < 0 || i >= size) {
+	        System.out.println("Node at index " + i + " does not exist.");
+	        return;
+	    }
+	    if (i == 0) {
+	        head = head.next;
+	        size--;
+	        return;
+	    }
+	    Node current = head;
+	    for (int j = 0; j < i - 1; j++) {
+	        current = current.next;
+	    }
+	    current.next = current.next.next;
+	    size--;
+	}
+
 
 }

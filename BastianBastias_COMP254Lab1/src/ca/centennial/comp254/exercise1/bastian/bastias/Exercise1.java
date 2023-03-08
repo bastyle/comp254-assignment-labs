@@ -15,18 +15,18 @@ public class Exercise1 {
 		list.addLast("DDD");
 		list.addLast("EEE");
 
-		list.finalSwap("BBB", "DDD");
+		list.swapNodes("BBB", "DDD");
 
-		list.finalSwap("AAA", "BBB");
+		list.swapNodes("AAA", "BBB");
 		
-		list.finalSwap("DDD", "CCC");
+		list.swapNodes("DDD", "CCC");
 		
-		list.finalSwap("AAA", "EEE");
+		list.swapNodes("AAA", "EEE");
 		
 		//validate tail
-		list.finalSwap("DDD", "EEE");
+		list.swapNodes("DDD", "EEE");
 		
-		list.finalSwap("BBB", "AAA");
+		list.swapNodes("BBB", "AAA");
 
 
 	}
