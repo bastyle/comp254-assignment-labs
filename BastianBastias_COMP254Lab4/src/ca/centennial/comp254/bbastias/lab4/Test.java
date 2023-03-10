@@ -3,8 +3,8 @@ package ca.centennial.comp254.bbastias.lab4;
 public class Test {
 
 	public static void main(String[] args) {
-//		exercise1();
-//		exercise2();
+		exercise1();
+		exercise2();
 		exercise3();
 	}
 
@@ -37,7 +37,6 @@ public class Test {
 		transfer(singlyLinkedStack, singlyLinkedStack2);
 		System.out.println("final singlyLinkedStack: " + singlyLinkedStack);
 		System.out.println("final singlyLinkedStack2: " + singlyLinkedStack2);
-
 	}
 
 	private static void exercise3() {
@@ -59,9 +58,11 @@ public class Test {
 	}
 
 	private static <E> void transfer(Stack<E> S, Stack<E> T) {
-		final int auxSize = S.size();
-		for (int i = 0; i < auxSize; i++) {
-			T.push(S.pop());
+		final int auxSize = S.size();// sets its value to the size of Stack S, which is the number of elements in the
+										// stack.
+		for (int i = 0; i < auxSize; i++) {// loop that will iterate
+			T.push(S.pop());// the top element of Stack S onto the top of Stack T, while also removing the
+							// element from Stack S by calling the "pop" method.
 		}
 	}
 
