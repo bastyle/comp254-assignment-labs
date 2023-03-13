@@ -55,12 +55,11 @@ public class Bastian {
 	// output: reversed string
 	public static void reverse(String s, int n) {
 		// stopping condition
-		// if( n<0 ) throw new IllegalStateException("String must have one or more
-		// chars");
+		if (n < 0)
+			throw new IllegalStateException("String must have one or more chars");
 		if (n >= 0) {
 			System.out.println(s.charAt(n));
-			//
-			reverse(s, n - 1);// recur
+			reverse(s, n - 1);
 		}
 	}
 

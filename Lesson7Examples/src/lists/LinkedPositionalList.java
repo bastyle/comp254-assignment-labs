@@ -423,4 +423,19 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
     sb.append(")");
     return sb.toString();
   }
+  
+  public static void main(String[]args) {
+	  PositionalList<String> myList = new LinkedPositionalList<>();
+	  Position p = myList.addLast("A");
+	  Position q = myList.addLast("B");
+	  System.out.println(myList);
+	  myList.addBefore(p,"C");
+	  System.out.println(myList);
+		((LinkedPositionalList) myList).addBetween("D", myValidate(p), myValidate(q));			
+  }
+
+	private static Node myValidate(Position p) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

@@ -36,6 +36,14 @@ public class VowelsConsonants {
 		return vowels > consonants;
 	}
 
+	private static int vowelsCounter(String word) {
+		final int wordLenght = word == null ? 0 : word.length();
+		if (wordLenght == 0) {
+			return 0;
+		}
+		return (VOWELS1.contains(word.charAt(0)) ? 1 : 0) + vowelsCounter(word.substring(1, wordLenght));
+	}
+	
 	private static boolean hasMoreVowels2(String word) {
 		final int wordLenght = word == null ? 0 : word.length();
 		if (wordLenght == 0) {
@@ -44,14 +52,6 @@ public class VowelsConsonants {
 		vowelsCount += (VOWELS1.contains(word.charAt(0)) ? 1 : 0);
 		hasMoreVowels2(word.substring(1, wordLenght));
 		return (word.length() - vowelsCount) < vowelsCount;
-	}
-
-	private static int vowelsCounter(String word) {
-		final int wordLenght = word == null ? 0 : word.length();
-		if (wordLenght == 0) {
-			return 0;
-		}
-		return (VOWELS1.contains(word.charAt(0)) ? 1 : 0) + vowelsCounter(word.substring(1, wordLenght));
 	}
 
 }
