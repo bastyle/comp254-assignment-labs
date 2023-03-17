@@ -107,18 +107,27 @@ public class LinkedQueue<E> implements Queue<E> {
 	}
 
 	public void concatenate(LinkedQueue<E> Q2) {
-		if (Q2.isEmpty()) {
+		if (Q2.isEmpty()) {// checks if the given LinkedQueue Q2 is empty by calling its "isEmpty" method.
 			return;
 		}
-		SinglyLinkedList<E> otherList = Q2.list;
-		if (isEmpty()) {
-			this.list.setHead(otherList.getHead());
+		SinglyLinkedList<E> otherList = Q2.list;// creates a new SinglyLinkedList object "otherList" and assigns it the
+												// value of the internal SinglyLinkedList object "list" of Q2.
+		if (isEmpty()) {// checks if the current LinkedQueue object is empty by calling its "isEmpty"
+			this.list.setHead(otherList.getHead());// sets the head of the current LinkedQueue object's internal
+													// SinglyLinkedList to the head of the otherList if the current
+													// LinkedQueue object is empty.
 		} else {
-			this.list.getTail().setNext(otherList.getHead());
+			this.list.getTail().setNext(otherList.getHead());// sets the next node of the tail of the current
+																// LinkedQueue
+																// object's internal SinglyLinkedList to the head of
+																// otherList.
 		}
-		this.list.setTail(otherList.getTail());
-		this.list.setSize(this.list.size() + otherList.getSize());
-		//clean Q2
+		this.list.setTail(otherList.getTail());// sets the tail of the current LinkedQueue object's internal
+												// SinglyLinkedList to the tail of otherList.
+		this.list.setSize(this.list.size() + otherList.getSize()); // updates the size of the current LinkedQueue
+																	// object's internal SinglyLinkedList by adding the
+																	// size of otherList to it.
+		// clean Q2
 		otherList.setHead(null);
 		otherList.setTail(null);
 		otherList.setSize(0);
