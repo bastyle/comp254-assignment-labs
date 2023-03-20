@@ -3,8 +3,11 @@ package ca.centennial.comp254.bbastias.lab4;
 public class Test {
 
 	public static void main(String[] args) {
+		System.out.println("--------- exercise 1 --------");
 		exercise1();
+		System.out.println("--------- exercise 2 --------");
 		exercise2();
+		System.out.println("--------- exercise 3 --------");
 		exercise3();
 	}
 
