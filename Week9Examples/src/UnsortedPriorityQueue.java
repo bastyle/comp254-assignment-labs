@@ -22,6 +22,8 @@
  */
 
 import java.util.Comparator;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 /**
  * An implementation of a priority queue with an unsorted list.
@@ -30,94 +32,127 @@ import java.util.Comparator;
  * @author Roberto Tamassia
  * @author Michael H. Goldwasser
  */
-public class UnsortedPriorityQueue<K,V> extends AbstractPriorityQueue<K,V> {
-  /** primary collection of priority queue entries */
-  private PositionalList<Entry<K,V>> list = new LinkedPositionalList<>();
+public class UnsortedPriorityQueue<K, V> extends AbstractPriorityQueue<K, V> {
+	/** primary collection of priority queue entries */
+	private PositionalList<Entry<K, V>> list = new LinkedPositionalList<>();
 
-  /** Creates an empty priority queue based on the natural ordering of its keys. */
-  public UnsortedPriorityQueue() { super(); }
+	/**
+	 * Creates an empty priority queue based on the natural ordering of its keys.
+	 */
+	public UnsortedPriorityQueue() {
+		super();
+	}
 
-  /**
-   * Creates an empty priority queue using the given comparator to order keys.
-   * @param comp comparator defining the order of keys in the priority queue
-   */
-  public UnsortedPriorityQueue(Comparator<K> comp) { super(comp); }
+	/**
+	 * Creates an empty priority queue using the given comparator to order keys.
+	 * 
+	 * @param comp comparator defining the order of keys in the priority queue
+	 */
+	public UnsortedPriorityQueue(Comparator<K> comp) {
+		super(comp);
+	}
 
-  /**
-   * Returns the Position of an entry having minimal key.
-   * This should only be called on a nonempty priority queue
-   * @return Position of entry with minimal key
-   */
-  private Position<Entry<K,V>> findMin() {    // only called when nonempty
-    Position<Entry<K,V>> small = list.first();
-    for (Position<Entry<K,V>> walk : list.positions())
-      if (compare(walk.getElement(), small.getElement()) < 0)
-        small = walk;      // found an even smaller key
-    return small;
-  }
+	/**
+	 * Returns the Position of an entry having minimal key. This should only be
+	 * called on a nonempty priority queue
+	 * 
+	 * @return Position of entry with minimal key
+	 */
+	private Position<Entry<K, V>> findMin() { // only called when nonempty
+		Position<Entry<K, V>> small = list.first();
+		for (Position<Entry<K, V>> walk : list.positions())
+			if (compare(walk.getElement(), small.getElement()) < 0)
+				small = walk; // found an even smaller key
+		return small;
+	}
 
-  /**
-   * Inserts a key-value pair and returns the entry created.
-   * @param key     the key of the new entry
-   * @param value   the associated value of the new entry
-   * @return the entry storing the new key-value pair
-   * @throws IllegalArgumentException if the key is unacceptable for this queue
-   */
-  @Override
-  public Entry<K,V> insert(K key, V value) throws IllegalArgumentException {
-    checkKey(key);    // auxiliary key-checking method (could throw exception)
-    Entry<K,V> newest = new PQEntry<>(key, value);
-    list.addLast(newest);
-    return newest;
-  }
+	/**
+	 * Inserts a key-value pair and returns the entry created.
+	 * 
+	 * @param key   the key of the new entry
+	 * @param value the associated value of the new entry
+	 * @return the entry storing the new key-value pair
+	 * @throws IllegalArgumentException if the key is unacceptable for this queue
+	 */
+	@Override
+	public Entry<K, V> insert(K key, V value) throws IllegalArgumentException {
+		checkKey(key); // auxiliary key-checking method (could throw exception)
+		Entry<K, V> newest = new PQEntry<>(key, value);
+		list.addLast(newest);
+		return newest;
+	}
 
-  /**
-   * Returns (but does not remove) an entry with minimal key.
-   * @return entry having a minimal key (or null if empty)
-   */
-  @Override
-  public Entry<K,V> min() {
-    if (list.isEmpty()) return null;
-    return findMin().getElement();
-  }
+	/**
+	 * Returns (but does not remove) an entry with minimal key.
+	 * 
+	 * @return entry having a minimal key (or null if empty)
+	 */
+	@Override
+	public Entry<K, V> min() {
+		if (list.isEmpty())
+			return null;
+		return findMin().getElement();
+	}
 
-  /**
-   * Removes and returns an entry with minimal key.
-   * @return the removed entry (or null if empty)
-   */
-  @Override
-  public Entry<K,V> removeMin() {
-    if (list.isEmpty()) return null;
-    return list.remove(findMin());
-  }
+	/**
+	 * Removes and returns an entry with minimal key.
+	 * 
+	 * @return the removed entry (or null if empty)
+	 */
+	@Override
+	public Entry<K, V> removeMin() {
+		if (list.isEmpty())
+			return null;
+		return list.remove(findMin());
+	}
 
-  /**
-   * Returns the number of items in the priority queue.
-   * @return number of items
-   */
-  @Override
-  public int size() { return list.size(); }
-  
-  //
-  public static void main(String[] args)
-  {
-	  //creat an unsorted priority queue
-	  UnsortedPriorityQueue<String,String> queue = new UnsortedPriorityQueue<String,String>();
-	  queue.insert("5", "A");
-	  queue.insert("9", "C");
-	  queue.insert("3", "B");
-	  //
-	  // list all entries
-	  for (Position<Entry<String,String>> walk : queue.list.positions())
-		  System.out.println( "(" + walk.getElement().getKey() +
-				  ", " + walk.getElement().getValue() + ")" );
-	  //print the key of the first entry
-	  Position<Entry<String,String>> first = queue.list.first();
-	  System.out.println(first.getElement().getKey());
-	  //print the entry with minimal key
-	  System.out.println("Entry with minimal key: (" +queue.min().getKey() +
-			  ", " + queue.min().getValue() + ")" );
-	  //
-  }
-  
+	/**
+	 * Returns the number of items in the priority queue.
+	 * 
+	 * @return number of items
+	 */
+	@Override
+	public int size() {
+		return list.size();
+	}
+
+	//
+	public static void main(String[] args) {
+		// creat an unsorted priority queue
+//		UnsortedPriorityQueue<String, String> queue = new UnsortedPriorityQueue<String, String>();
+//		queue.insert("5", "A");
+//		queue.insert("9", "C");
+//		queue.insert("3", "B");
+//		//
+//		// list all entries
+//		for (Position<Entry<String, String>> walk : queue.list.positions())
+//			System.out.println("(" + walk.getElement().getKey() + ", " + walk.getElement().getValue() + ")");
+//		// print the key of the first entry
+//		Position<Entry<String, String>> first = queue.list.first();
+//		System.out.println(first.getElement().getKey());
+//		// print the entry with minimal key
+//		System.out.println("Entry with minimal key: (" + queue.min().getKey() + ", " + queue.min().getValue() + ")");
+//		//
+
+		
+		UnsortedPriorityQueue<String, Employee> queue = new UnsortedPriorityQueue<String, Employee>();
+		Employee e1 = new Employee(new Date(), "Jhon Smith", "1234");
+//		TimeUnit.SECONDS.sleep(3);
+		Employee e3 = new Employee(new Date(), "Pancho Montecino", "12345");
+//		TimeUnit.SECONDS.sleep(3);
+		Employee e2 = new Employee(new Date(), "Guaton Nelson", "123");
+		queue.insert(e1.getSocialInsuranceNumer(), e1);
+		queue.insert(e2.getSocialInsuranceNumer(), e2);
+		queue.insert(e3.getSocialInsuranceNumer(), e3);
+		//
+		// list all entries
+		for (Position<Entry<String, Employee>> walk : queue.list.positions())
+			System.out.println("(" + walk.getElement().getKey() + ", " + walk.getElement().getValue() + ")");
+		// print the key of the first entry
+		Position<Entry<String, Employee>> first = queue.list.first();
+		System.out.println(first.getElement().getKey());
+		// print the entry with minimal key
+		System.out.println("Entry with minimal key: (" + queue.min().getKey() + ", " + queue.min().getValue() + ")");
+	}
+
 }
