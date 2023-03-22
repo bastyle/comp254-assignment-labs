@@ -10,26 +10,50 @@ public class Test {
 	public static void main(String[] args) {
 		//parenthesize(lbt, xLeft);
 		//printPreorder(lbt);
-		exercise1();
+		//exercise1A();
+		exercise1B();
 	}
 	
-	private static <E> void exercise1() {
+	private static <E> void exercise1A() {
 		System.out.println("------------");
-		LinkedBinaryTree<String> lbt = new LinkedBinaryTree();
-		Position<String> root = lbt.addRoot("+");
+		LinkedBinaryTree<String> lbt = new LinkedBinaryTree<>();
+		Position<String> root = lbt.addRoot("A");
 		//
-		Position<String> xLeft = lbt.addLeft(root, "X");
-		Position<String> xRight = lbt.addRight(root, "X");
+		Position<String> bLeft = lbt.addLeft(root, "B");
+		Position<String> cRight = lbt.addRight(root, "C");
 		//
-		Position<String> twoLeft = lbt.addLeft(xLeft, "2");
-		Position<String> minusRight = lbt.addRight(xLeft, "-");
+		Position<String> dLeft = lbt.addLeft(bLeft, "D");
+		Position<String> eRight = lbt.addRight(bLeft, "E");
 		//
-		Position<String> threeLeft = lbt.addLeft(xRight, "3");
-		Position<String> bRight = lbt.addRight(xRight, "b");
+		Position<String> fLeft = lbt.addLeft(cRight, "F");
+		Position<String> gRight = lbt.addRight(cRight, "G");
 		//
-		Position<String> aLeft = lbt.addLeft(minusRight, "a");
-		Position<String> oneRight = lbt.addRight(minusRight, "1");
-		Position<String> aux = LinkedBinaryTree.preorderNext(lbt, aLeft);
+		Position<String> hLeft = lbt.addLeft(eRight, "H");
+		Position<String> iRight = lbt.addRight(eRight, "I");
+		Position<String> aux = LinkedBinaryTree.preorderNext(lbt, hLeft);
+		printPreorder(lbt);
+		System.out.println(aux);
+		
+	}
+	
+	private static <E> void exercise1B() {
+		System.out.println("------------");
+		LinkedBinaryTree<String> lbt = new LinkedBinaryTree<>();
+		Position<String> root = lbt.addRoot("A");
+		//
+		Position<String> bLeft = lbt.addLeft(root, "B");
+		Position<String> cRight = lbt.addRight(root, "C");
+		//
+		Position<String> dLeft = lbt.addLeft(bLeft, "D");
+		Position<String> eRight = lbt.addRight(bLeft, "E");
+		//
+		Position<String> fLeft = lbt.addLeft(cRight, "F");
+		Position<String> gRight = lbt.addRight(cRight, "G");
+		//
+		Position<String> hLeft = lbt.addLeft(eRight, "H");
+		Position<String> iRight = lbt.addRight(eRight, "I");
+		Position<String> aux = LinkedBinaryTree.inorderNext(lbt, eRight);
+		//printPreorder(lbt);
 		System.out.println(aux);
 		
 	}

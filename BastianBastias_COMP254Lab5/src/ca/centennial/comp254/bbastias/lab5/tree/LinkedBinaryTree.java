@@ -380,4 +380,15 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
 		}
 		return null;
 	}
+	
+	public static <E> Position<E> inorderNext(LinkedBinaryTree<E> T, Position<E> position) {
+		// List<Position<E>> preorderList = (List<Position<E>>) T.preorder();
+		for (Position<E> p : T.inorder()) {
+			if (p.getElement() == position.getElement()) {
+				Node<E> node = T.validate(position);
+				return null != node.left ? node.left : null;
+			}
+		}
+		return null;
+	}
 } // ----------- end of LinkedBinaryTree class -----------
