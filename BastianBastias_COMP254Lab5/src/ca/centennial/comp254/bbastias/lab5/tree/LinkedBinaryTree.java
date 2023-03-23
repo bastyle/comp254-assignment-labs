@@ -96,10 +96,9 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
 
 		@Override
 		public String toString() {
-			return "Node [element=" + element + ", parent=" + parent + ", left=" + left + ", right=" + right + "]";
+			return "Node [element=" + element  + "]";
 		}
-		
-		
+
 	} // ----------- end of nested Node class -----------
 
 	/** Factory function to create a new node storing element e. */
@@ -380,15 +379,17 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
 		}
 		return null;
 	}
-	
+
 	public static <E> Position<E> inorderNext(LinkedBinaryTree<E> T, Position<E> position) {
-		// List<Position<E>> preorderList = (List<Position<E>>) T.preorder();
-		for (Position<E> p : T.inorder()) {
+		List<Position<E>> inorderList = (List<Position<E>>) T.inorder();
+		int index = 0;
+		for (Position<E> p : inorderList) {
 			if (p.getElement() == position.getElement()) {
-				Node<E> node = T.validate(position);
-				return null != node.left ? node.left : null;
+				break;
 			}
+			index++;
 		}
-		return null;
+		return (inorderList.size() > index + 1 && null != inorderList.get(index + 1)) ? inorderList.get(index + 1)
+				: null;
 	}
 } // ----------- end of LinkedBinaryTree class -----------
