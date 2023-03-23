@@ -20,13 +20,15 @@ public class Test {
 		Position<String> iRight = lbt.addRight(eRight, "I");
 
 //		exercise1A();
-		exercise1(lbt, root);
-		exercise1(lbt, hLeft);
-		exercise1(lbt, eRight);
-		exercise1(lbt, fLeft);
+//		exercise1(lbt, root);
+//		exercise1(lbt, hLeft);
+//		exercise1(lbt, eRight);
+//		exercise1(lbt, fLeft);
 //		exercise1B(lbt, root);
 //		exercise1B(lbt, eRight);
 //		exercise1B(lbt, bLeft);
+		
+		exercise2(lbt, bLeft);
 	}
 
 	private static <E> void exercise1(LinkedBinaryTree<String> T, Position<String> position) {
@@ -41,6 +43,12 @@ public class Test {
 		System.out.println("----- exercise1B (inorderNext) ------");
 		Position<String> aux = LinkedBinaryTree.inorderNext(T, position);
 		System.out.println("Next inorder position of " + position + " is " + aux);
+	}
+	
+	private static void exercise2(LinkedBinaryTree<String> T, Position<String> position) {
+		System.out.println("----- exercise1B (inorderNext) ------");
+		LinkedBinaryTree.printElementAndHeight2(T, position);
+		//System.out.println("Next inorder position of " + position + " is " + aux);
 	}
 
 	public static <E> void printPreorder(AbstractTree<E> T) {

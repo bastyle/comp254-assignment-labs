@@ -1,6 +1,8 @@
 package ca.centennial.comp254.bbastias.lab5.tree;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /*
  * Copyright 2014, Michael T. Goodrich, Roberto Tamassia, Michael H. Goldwasser
@@ -96,7 +98,7 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
 
 		@Override
 		public String toString() {
-			return "Node [element=" + element  + "]";
+			return "Node [element=" + element + "]";
 		}
 
 	} // ----------- end of nested Node class -----------
@@ -392,9 +394,9 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
 		return (inorderList.size() > index + 1 && null != inorderList.get(index + 1)) ? inorderList.get(index + 1)
 				: null;
 	}
-	
+
 	public static <E> Position<E> orderNext(LinkedBinaryTree<E> T, Position<E> position, boolean isPreorder) {
-		List<Position<E>> orderList = isPreorder?(List<Position<E>>) T.preorder():(List<Position<E>>) T.inorder();		
+		List<Position<E>> orderList = isPreorder ? (List<Position<E>>) T.preorder() : (List<Position<E>>) T.inorder();
 		int index = 0;
 		for (Position<E> p : orderList) {
 			if (p.getElement() == position.getElement()) {
@@ -402,7 +404,39 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
 			}
 			index++;
 		}
-		return (orderList.size() > index + 1 && null != orderList.get(index + 1)) ? orderList.get(index + 1)
-				: null;
+		return (orderList.size() > index + 1 && null != orderList.get(index + 1)) ? orderList.get(index + 1) : null;
 	}
+
+	public static <E> void printElementAndHeight(LinkedBinaryTree<E> T, Position<E> position) {
+//		List<Position<E>> postorderList = (List<Position<E>>) T.postorder();
+//		Node<E> node = T.validate(position);
+//		System.out.println("height: "+T.numChildren(position));
+
+		Map<Position<E>, Integer> heights = new HashMap<>();
+		for (Position<E> p : T.postorder()) {
+			// Node<E> node = T.validate(p);
+			// if (T.isLeaf(p)) {
+			if (T.numChildren(p) == 0) {// p is leaf
+				heights.put(p, 0);
+			} else {
+				int maxHeight = -1;
+				for (Position<E> child : T.children(p)) {
+					int height = heights.get(child);
+					if (height > maxHeight) {
+						maxHeight = height;
+					}
+				}
+				heights.put(p, maxHeight + 1);
+			}
+			System.out.println(p.getElement() + " " + heights.get(p));
+		}
+	}
+
+	public static <E> void printElementAndHeight2(LinkedBinaryTree<E> T, Position<E> position) {
+		T.postorder3();
+//		for (Map.Entry<Position<E>, Integer> set : T.postorder2().entrySet()) {
+//			System.out.println(set.getKey().getElement() + " h: " + set.getValue());
+//		}
+	}
+
 } // ----------- end of LinkedBinaryTree class -----------
