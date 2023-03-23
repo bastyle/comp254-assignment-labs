@@ -392,4 +392,17 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
 		return (inorderList.size() > index + 1 && null != inorderList.get(index + 1)) ? inorderList.get(index + 1)
 				: null;
 	}
+	
+	public static <E> Position<E> orderNext(LinkedBinaryTree<E> T, Position<E> position, boolean isPreorder) {
+		List<Position<E>> orderList = isPreorder?(List<Position<E>>) T.preorder():(List<Position<E>>) T.inorder();		
+		int index = 0;
+		for (Position<E> p : orderList) {
+			if (p.getElement() == position.getElement()) {
+				break;
+			}
+			index++;
+		}
+		return (orderList.size() > index + 1 && null != orderList.get(index + 1)) ? orderList.get(index + 1)
+				: null;
+	}
 } // ----------- end of LinkedBinaryTree class -----------
