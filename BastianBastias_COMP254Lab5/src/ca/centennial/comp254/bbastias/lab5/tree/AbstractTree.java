@@ -236,7 +236,7 @@ public abstract class AbstractTree<E> implements Tree<E> {
 		for (Position<E> c : children(p))
 			postorderSubtree(c, snapshot);
 		snapshot.add(p); // for postorder, we add position p after exploring subtrees
-		System.out.println(p.getElement()+" height: "+height(p));
+		//System.out.println(p.getElement()+" height: "+height(p));
 	}
 
 	/**
@@ -272,52 +272,5 @@ public abstract class AbstractTree<E> implements Tree<E> {
 		}
 		return snapshot;
 	}
-
-	///
-
-	/**
-	 * 
-	 * @param p
-	 * @param snapshot
-	 */
-	private void postorderSubtree2(Position<E> p, Map<Position<E>, Integer> heights) {
-		int count = 0;
-		if (numChildren(p) == 0) {
-			System.out.println(p.getElement() + " is leaf");
-			heights.put(p, 0);
-			return;
-		} /*
-			 * else { heights.put(p,numChildren(p)); }
-			 */
-		
-		for (Position<E> c : children(p)) {
-			//count++;
-			// heights.put(p, count);
-			// System.out.println(c.getElement() + " children: " + numChildren(c));
-			/*if (null != heights.get(c)) {
-				heights.put(c, heights.get(c).intValue() + 1);
-			}else {
-				heights.put(c, 1);
-			}*/
-			//heights.put(p, numChildren(p));
-			postorderSubtree2(c, heights);
-		}
-		heights.put(p, count);
-	}
-
-	/**
-	 * Returns an iterable collection of positions of the tree, reported in
-	 * postorder.
-	 * 
-	 * @return iterable collection of the tree's positions in postorder
-	 */
-	public Map<Position<E>, Integer> postorder2() {
-		// List<Position<E>> snapshot = new ArrayList<>();
-		Map<Position<E>, Integer> heights = new HashMap<>();
-		if (!isEmpty())
-			postorderSubtree2(root(), heights); // fill the snapshot recursively
-
-		// return snapshot;
-		return heights;
-	}
+	
 }

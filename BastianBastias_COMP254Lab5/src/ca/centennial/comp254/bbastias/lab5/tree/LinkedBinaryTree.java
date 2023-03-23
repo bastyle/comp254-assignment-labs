@@ -1,8 +1,11 @@
 package ca.centennial.comp254.bbastias.lab5.tree;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import ca.centennial.comp254.bbastias.lab5.tree.LinkedBinaryTree.Node;
 
 /*
  * Copyright 2014, Michael T. Goodrich, Roberto Tamassia, Michael H. Goldwasser
@@ -371,8 +374,9 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
 			System.out.println(p.getElement());
 	}//
 
+	// lab 5 //
+
 	public static <E> Position<E> preorderNext(LinkedBinaryTree<E> T, Position<E> position) {
-		// List<Position<E>> preorderList = (List<Position<E>>) T.preorder();
 		for (Position<E> p : T.preorder()) {
 			if (p.getElement() == position.getElement()) {
 				Node<E> node = T.validate(position);
@@ -407,15 +411,13 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
 		return (orderList.size() > index + 1 && null != orderList.get(index + 1)) ? orderList.get(index + 1) : null;
 	}
 
-	public static <E> void printElementAndHeight(LinkedBinaryTree<E> T, Position<E> position) {
-//		List<Position<E>> postorderList = (List<Position<E>>) T.postorder();
-//		Node<E> node = T.validate(position);
-//		System.out.println("height: "+T.numChildren(position));
+	public static <E> void printElementAndHeight2(LinkedBinaryTree<E> T) {
+		T.postorderPrintHeight();
+	}
 
+	public static <E> void printElementAndHeight(LinkedBinaryTree<E> T, Position<E> position) {
 		Map<Position<E>, Integer> heights = new HashMap<>();
 		for (Position<E> p : T.postorder()) {
-			// Node<E> node = T.validate(p);
-			// if (T.isLeaf(p)) {
 			if (T.numChildren(p) == 0) {// p is leaf
 				heights.put(p, 0);
 			} else {
@@ -432,11 +434,45 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
 		}
 	}
 
-	public static <E> void printElementAndHeight2(LinkedBinaryTree<E> T, Position<E> position) {
-		T.postorder3();
-//		for (Map.Entry<Position<E>, Integer> set : T.postorder2().entrySet()) {
-//			System.out.println(set.getKey().getElement() + " h: " + set.getValue());
+	// exe 1
+
+//	public static <E> Position<E> preorderNext2(LinkedBinaryTree<E> T, Position<E> position) {
+//		if (!T.isEmpty()) {
+//			return preorderSubtree2(T,position);
 //		}
+//		return null;
+//
+//	}
+
+	private Position<E> preorderSubtree2(Position<E> rootRef, Position<E> p) {
+		// for preorder, we add position p before exploring subtrees
+		if (root.getElement() == p.getElement()) {
+			Node<E> node = validate(p);
+			return null != node.left ? node.left : null;
+		}
+		Position<E> aux = null;
+		for (Position<E> c : children(rootRef)) {
+			if (c.getElement() == p.getElement()) {
+				Node<E> node = validate(c);
+				aux = null != node.left ? node.left : sibling(c);
+				break;
+			}
+			if (null == aux)
+				aux = preorderSubtree2(c, p);
+		}
+		return aux;
+	}
+
+	/**
+	 * Returns an iterable collection of positions of the tree, reported in
+	 * preorder.
+	 * 
+	 * @return iterable collection of the tree's positions in preorder
+	 */
+	public Position<E> preorder2(Position<E> position) {
+		if (!isEmpty())
+			return preorderSubtree2(root, position);
+		return null;
 	}
 
 } // ----------- end of LinkedBinaryTree class -----------

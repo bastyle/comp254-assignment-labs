@@ -24,6 +24,9 @@ package ca.centennial.comp254.bbastias.lab5.tree;
 
 import java.util.List;
 import java.util.Map;
+
+import ca.centennial.comp254.bbastias.lab5.tree.LinkedBinaryTree.Node;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -130,6 +133,7 @@ public abstract class AbstractBinaryTree<E> extends AbstractTree<E> implements B
 		return inorder();
 	}
 
+	// lab 5
 	public int postOrderHeight(Position<E> p) throws IllegalArgumentException {
 		if (numChildren(p) == 0) {
 			return 0;
@@ -139,43 +143,10 @@ public abstract class AbstractBinaryTree<E> extends AbstractTree<E> implements B
 		return 1 + Math.max(leftHeight, rightHeight);
 	}
 
-	private void postorderSubtree2(Position<E> p, Map<Position<E>, Integer> heights) {
-		int count = 0;
-		if (numChildren(p) == 0) {
-			System.out.println(p.getElement() + " is leaf");
-			heights.put(p, 0);
-			return;
-		}
-		for (Position<E> c : children(p)) {
-			postorderSubtree2(c, heights);
-		}
-		heights.put(p, count);
-
-		int h = 0; // base case if p is external
-		for (Position<E> c : children(p))
-			h = Math.max(h, 1 + height(c));
-
-	}
-
-	/**
-	 * Returns an iterable collection of positions of the tree, reported in
-	 * postorder.
-	 * 
-	 * @return iterable collection of the tree's positions in postorder
-	 */
-	public Map<Position<E>, Integer> postorder2() {
-		Map<Position<E>, Integer> heights = new HashMap<>();
-		if (!isEmpty())
-			postorderSubtree2(root(), heights); // fill the snapshot recursively
-
-		return heights;
-	}
-
-	/// 3
-	private int postorderSubtree3(Position<E> p, List<Position<E>> snapshot, int height) {
+	private int postorderSubtreePrintHeight(Position<E> p, List<Position<E>> snapshot, int height) {
 		int h = 0; // base case if p is external (leaf)
-		for (Position<E> c : children(p)) {			
-			h = Math.max(h, 1 + postorderSubtree3(c, snapshot, height));
+		for (Position<E> c : children(p)) {
+			h = Math.max(h, 1 + postorderSubtreePrintHeight(c, snapshot, height));
 		}
 		System.out.println(p.getElement() + " height: " + h);
 		snapshot.add(p); // for postorder, we add position p after exploring subtrees
@@ -188,17 +159,13 @@ public abstract class AbstractBinaryTree<E> extends AbstractTree<E> implements B
 	 * 
 	 * @return iterable collection of the tree's positions in postorder
 	 */
-	public Iterable<Position<E>> postorder3() {
+	public Iterable<Position<E>> postorderPrintHeight() {
 		List<Position<E>> snapshot = new ArrayList<>();
 		if (!isEmpty())
-			postorderSubtree3(root(), snapshot, 0); // fill the snapshot recursively
+			postorderSubtreePrintHeight(root(), snapshot, 0); // fill the snapshot recursively
 		return snapshot;
 	}
+	
 
-	public int height3(Position<E> p) throws IllegalArgumentException {
-		int h = 0; // base case if p is external
-		for (Position<E> c : children(p))
-			h = Math.max(h, 1 + height3(c));
-		return h;
-	}
+
 }
