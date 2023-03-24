@@ -182,13 +182,24 @@ public class HeapPriorityQueue<K,V> extends AbstractPriorityQueue<K,V> {
 	  heapQueue.insert("31", "F");
 	  heapQueue.insert("22", "G");
 	  heapQueue.insert("15", "H");
-
+	  
+	  heapQueue.heapify();
+	  
+	  for (int i=0;i < heapQueue.size();i++) {
+		  System.out.println(heapQueue.heap.get(i).getKey());
+	  }
+	  
 	  // list all entries
-	  for (int i=0;i < heapQueue.size();i++)
-		  System.out.println("(" +heapQueue.heap.get(i).getKey() +
-			  ", " + heapQueue.heap.get(i).getValue() + ")" ); 
+	  int size = heapQueue.size();
+	  //for (int i=0;i < heapQueue.size();i++) {
+	  for (int i=0;i < size-1;i++) {
+		  //System.out.println("(" +heapQueue.heap.get(i).getKey() +				  ", " + heapQueue.heap.get(i).getValue() + ")" ); 
+//		  System.out.println(heapQueue.removeMin().getKey());
+	  }
+		  
+	  
 	//get the minimum  
-	   System.out.println(heapQueue.min().getKey());
+//	   System.out.println(heapQueue.min().getKey());
 	 //create a Comparator object
 	  Comparator<String> comp = new Comparator<String>() {
 	      public int compare(String s1, String s2) {
