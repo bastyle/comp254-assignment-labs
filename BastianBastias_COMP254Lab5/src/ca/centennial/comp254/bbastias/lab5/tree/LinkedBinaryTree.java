@@ -475,4 +475,91 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
 		return null;
 	}
 
+	///
+
+	private Position<E> inorderSubtree2(Position<E> p, Position<E> p2Find) {
+		Position<E> aux = null;
+
+		if (p.getElement() == p2Find.getElement()) {// it's node searched (base case)
+			// i need to get next one
+			if (isLeaf(p)) {// validate if node is root
+				Node<E> node = validate(p);
+				return node.parent;
+			}
+			// Node<E> node = validate(p);
+			// return null!= node.getLeft()? node.getLeft():sibling(p);
+
+		}
+		return aux;
+	}
+
+	protected boolean isLeaf(Position<E> p) {
+		return numChildren(p) == 0;
+	}
+
+	/**
+	 * Returns an iterable collection of positions of the tree, reported in inorder.
+	 * 
+	 * @return iterable collection of the tree's positions reported in inorder
+	 */
+	public Position<E> inorder2(Position<E> p2Find) {
+		List<Position<E>> snapshot = new ArrayList<>();
+		if (!isEmpty())
+			return inorderSubtree2(root(), p2Find); // fill the snapshot recursively
+		return null;
+	}
+
+	//
+	private int inorderSubtree3(Position<E> initialPosition, List<Position<E>> snapshot, Position<E> f, int index) {
+//		if(root.getElement()==initialPosition.getElement())
+//			index=0;
+		if (left(initialPosition) != null) {
+			if (initialPosition.getElement() == f.getElement()) {
+				index = snapshot.size();// + 1;
+//				System.out.println("node equal left side> "+f.getElement());
+//				System.out.println("inx: "+index);				
+			}
+			index = inorderSubtree3(left(initialPosition), snapshot, f, index);
+		}
+		snapshot.add(initialPosition);
+		if (right(initialPosition) != null) {
+			if (initialPosition.getElement() == f.getElement()) {
+				index = snapshot.size();// + 1;
+//				System.out.println("node equal rigth "+f.getElement());
+//				System.out.println("inx: "+index);
+			}
+			index = inorderSubtree3(right(initialPosition), snapshot, f, index);
+		}
+		/*
+		 * if (root.getElement() == f.getElement()) { index = snapshot.size()-1;// + 1;
+		 * System.out.println("root"); }
+		 */
+
+		return index;
+	}
+
+	/**
+	 * Returns an iterable collection of positions of the tree, reported in inorder.
+	 * 
+	 * @return iterable collection of the tree's positions reported in inorder
+	 */
+	public Position<E> inorder3(Position<E> p) {
+		List<Position<E>> snapshot = new ArrayList<>();
+		Position<E> nextNode = null;
+//		System.out.println("node to search>> " + p);
+		if (!isEmpty()) {
+			int aux = inorderSubtree3(root(), snapshot, p, -1); // fill the snapshot recursively
+//			System.out.println("position>> " + aux);
+			if (aux > -1) {
+				nextNode = snapshot.get(aux);
+			} else {//if (aux == snapshot.size()) {
+				nextNode = null;// last position
+			} /*else {
+				System.out.println("doesn found...");
+			}*/
+		}
+		// return snapshot;
+		return nextNode;
+	}
+
 } // ----------- end of LinkedBinaryTree class -----------
