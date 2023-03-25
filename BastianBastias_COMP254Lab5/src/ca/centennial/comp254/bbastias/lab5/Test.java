@@ -19,13 +19,14 @@ public class Test {
 		Position<String> hLeft = lbt.addLeft(eRight, "H");
 		Position<String> iRight = lbt.addRight(eRight, "I");
 
-
-//		exercise1(lbt, root);
-//		exercise1(lbt, bLeft);
-//		exercise1(lbt, dLeft);
-//		exercise1(lbt, hLeft);
-//		exercise1(lbt, eRight);
-//		exercise1(lbt, fLeft);
+		System.out.println("----- exercise1A (preorderNext) ------");
+		exercise1(lbt, root);
+		exercise1(lbt, bLeft);
+		exercise1(lbt, dLeft);
+		exercise1(lbt, hLeft);
+		exercise1(lbt, eRight);
+		exercise1(lbt, fLeft);
+		System.out.println("----- exercise1B (inorderNext) ------");
 		exercise1B(lbt, root);
 		exercise1B(lbt, eRight);
 		exercise1B(lbt, bLeft);
@@ -35,16 +36,16 @@ public class Test {
 	}
 
 	private static <E> void exercise1(LinkedBinaryTree<String> T, Position<String> position) {
-		System.out.println("----- exercise1A (preorderNext) ------");
+		//System.out.println("----- exercise1A (preorderNext) ------");
 //		Position<String> aux = LinkedBinaryTree.preorderNext(T, position);
-		Position<String> aux = LinkedBinaryTree.orderNext(T, position, true);
-		System.out.println("Next preorder position of " + position + " is " + aux);
-		aux = T.preorder2(position);
+		//Position<String> aux = LinkedBinaryTree.orderNext(T, position, true);
+		//System.out.println("Next preorder position of " + position + " is " + aux);
+		Position<String> aux = T.preorder2(position);
 		System.out.println("Next preorder position of " + position + " is " + aux);
 	}
 
 	private static <E> void exercise1B(LinkedBinaryTree<String> T, Position<String> position) {
-//		System.out.println("----- exercise1B (inorderNext) ------");
+		//System.out.println("----- exercise1B (inorderNext) ------");
 //		Position<String> aux = LinkedBinaryTree.inorderNext(T, position);
 //		System.out.println("Next inorder position of " + position + " is " + aux);
 //		aux = T.inorder2(position);
