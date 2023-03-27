@@ -103,6 +103,7 @@ public abstract class AbstractHashMap<K,V> extends AbstractMap<K,V> {
   @Override
   public V put(K key, V value) {
     V answer = bucketPut(hashValue(key), key, value);
+    //take low factor from the user.
     if (n > capacity / 2)              // keep load factor <= 0.5
       resize(2 * capacity - 1);        // (or find a nearby prime)
     return answer;
