@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="BastianBastias_COMP254Lab1/src"/>
+	<classpathentry kind="src" path="BastianBastias_COMP254Lab2/src"/>
+	<classpathentry kind="src" path="BastianBastias_COMP254Lab3/src"/>
+	<classpathentry kind="src" path="BastianBastias_COMP254Lab4/src"/>
+	<classpathentry kind="src" path="BastianBastias_COMP254Lab5/src"/>
+	<classpathentry kind="src" path="Lesson10Examples/src"/>
+	<classpathentry kind="src" path="Lesson6Examples/src"/>
+	<classpathentry kind="src" path="Lesson7Examples/src"/>
+	<classpathentry kind="src" path="Lesson8Examples/src"/>
+	<classpathentry kind="src" path="Week9Examples/src"/>
+	<classpathentry kind="lib" path="BastianBastias_COMP254Lab2/jfreechart-1.5.4.jar"/>
+	<classpathentry kind="output" path="BastianBastias_COMP254Lab1/bin"/>
+</classpath>

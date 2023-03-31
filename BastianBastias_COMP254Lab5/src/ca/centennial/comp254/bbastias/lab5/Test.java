@@ -63,7 +63,7 @@ public class Test {
 	}
 
 	private static void exercise3() {
-		System.out.println("----- exercise13 (uphead recursive) ------");
+		System.out.println("----- exercise3 (uphead recursive) ------");
 		HeapPriorityQueue<String, String> heapQueue = new HeapPriorityQueue<String, String>();
 		heapQueue.insert("47", "A");
 		heapQueue.insert("75", "C");
