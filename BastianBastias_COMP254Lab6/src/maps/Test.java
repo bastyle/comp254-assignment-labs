@@ -7,7 +7,7 @@ import java.util.Random;
 public class Test {
 
 	public static void main(String[] args) {
-//		exercise1();
+		exercise1();
 		exercise2();
 	}
 
@@ -95,9 +95,9 @@ public class Test {
 		stm.containKey("C");
 		stm.containKey("F");
 		System.out.println("-- get values --");
-		System.out.println(stm.get("A"));
-		System.out.println(stm.get("C"));
-		System.out.println(stm.get("F"));
-		System.out.println(stm.get(null));
+		stm.get("A");
+		stm.get("C");
+		stm.get("F");
+		stm.get(null);
 	}
 }
