@@ -7,8 +7,8 @@ import java.util.Random;
 public class Test {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		exercise1();
+//		exercise1();
+		exercise2();
 	}
 
 	private static void exercise1() {
@@ -46,11 +46,12 @@ public class Test {
 				long totalTime = 0;
 				for (int i = 0; i < repetitions; i++) {
 					// Generate k random keys and values, where k is 10 times the current capacity
-					// value
+					// value\
 					int k = 10 * n; // make k a multiple of n
 					Integer[] keys1 = new Integer[k];
 					Integer[] values = new Integer[k];
 					for (int j = 0; j < k; j++) {
+						//System.out.println(j);
 						keys1[j] = rand.nextInt();
 						values[j] = rand.nextInt();
 					}
@@ -85,13 +86,18 @@ public class Test {
 		stm.put("C", null);
 		stm.put("D", 3);
 		System.out.println("original sorted map:");
-		for (Entry<String, Integer> e : stm.entrySet()) {
-			System.out.println(e);
-		}
+//		for (Entry<String, Integer> e : stm.entrySet()) {
+//			System.out.println(e);
+//		}
 		stm.containKey("A");
 		stm.containKey("E");
 		stm.containKey("B");
 		stm.containKey("C");
 		stm.containKey("F");
+		System.out.println("-- get values --");
+		System.out.println(stm.get("A"));
+		System.out.println(stm.get("C"));
+		System.out.println(stm.get("F"));
+		System.out.println(stm.get(null));
 	}
 }
