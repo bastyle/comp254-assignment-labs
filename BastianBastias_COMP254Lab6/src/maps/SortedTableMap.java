@@ -92,8 +92,11 @@ public class SortedTableMap<K, V> extends AbstractSortedMap<K, V> {
 
 	public boolean containKey(K key) {
 		// Find the index of the entry with the given key.
+		if (null == key) {
+			System.out.println("key is null.");
+			return false;
+		}
 		int index = findIndex(key);// use findIndex method to check for the key in your map
-		//System.out.println("key:" + key + " find-index: " + index);
 		// If the index is out of bounds or the key does not match the entry at the
 		// index, the key is not in the map.
 		if (index >= table.size() || compare(key, table.get(index)) != 0) {
@@ -124,6 +127,8 @@ public class SortedTableMap<K, V> extends AbstractSortedMap<K, V> {
 	 */
 	@Override
 	public V get(K key) throws IllegalArgumentException {
+		if (!containKey(key))
+			return null;
 		checkKey(key);
 		int j = findIndex(key);
 		if (j == size() || compare(key, table.get(j)) != 0)

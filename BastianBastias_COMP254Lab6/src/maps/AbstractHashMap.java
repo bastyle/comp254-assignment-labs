@@ -71,8 +71,8 @@ public abstract class AbstractHashMap<K, V> extends AbstractMap<K, V> {
 	}
 
 	/** Creates a hash table with given capacity and prime factor 109345121. */
-	public AbstractHashMap(int cap, float maxLoadFactor) {
-		this(cap, 109345121, maxLoadFactor);
+	public AbstractHashMap(int cap, float loadFactor) {
+		this(cap, 109345121, loadFactor);
 	} // default prime
 
 	/** Creates a hash table with capacity 17 and prime factor 109345121. */
@@ -131,7 +131,6 @@ public abstract class AbstractHashMap<K, V> extends AbstractMap<K, V> {
 		V answer = bucketPut(hashValue(key), key, value);
 		// take low factor from the user.
 		// if (n > capacity / 2) // keep load factor <= 0.5
-		//if (n > capacity / maxLoadFactor)
 		if (n > capacity * maxLoadFactor)
 			resize(2 * capacity - 1); // (or find a nearby prime)
 		return answer;
