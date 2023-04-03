@@ -79,5 +79,11 @@ public class ProbeHashMap<K, V> extends AbstractHashMap<K, V> {
 				buffer.add(table[h]);
 		return buffer;
 	}
+	
+	public static void main(String[] args) {
+		ProbeHashMap<Integer, String> p1 = new ProbeHashMap<>(0.5f);
+		
+		
+	}
 
 }
