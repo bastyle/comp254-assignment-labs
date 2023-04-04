@@ -31,7 +31,8 @@ public class Test {
 		// An array of different capacity values to be tested
 		int[] capacities = { 1000, 10000, 100000 };
 		// An array of different load factor values to be tested
-		float[] loadFactors = { 0.25f, 0.5f, 0.75f, 0.9f };
+		//float[] loadFactors = { 0.25f, 0.5f, 0.75f, 0.9f };
+		float[] loadFactors = { 0.25f, 0.75f, 0.95f };
 		// Number of repetitions to perform for each test
 //		int repetitions = 10; 
 		Random rand = new Random();
@@ -70,7 +71,7 @@ public class Test {
 				// m, and the average time taken
 
 				final String msg = (testProbe ? "ProbeHashMap" : "ChainHashMap")
-						+ String.format("(n=%d, m=%.2f): average time=%.2f ms", n, factor, averageTime / 1000000);
+						+ String.format("(entries=%d, factor=%.2f): average time=%.2f ms", n, factor, averageTime / 1000000);
 //				System.out.println(msg);
 				list.add(msg);
 			}
@@ -86,9 +87,9 @@ public class Test {
 		stm.put("C", null);
 		stm.put("D", 3);
 		System.out.println("original sorted map:");
-//		for (Entry<String, Integer> e : stm.entrySet()) {
-//			System.out.println(e);
-//		}
+		for (Entry<String, Integer> e : stm.entrySet()) {
+			System.out.println(e);
+		}
 		stm.containKey("A");
 		stm.containKey("E");
 		stm.containKey("B");
