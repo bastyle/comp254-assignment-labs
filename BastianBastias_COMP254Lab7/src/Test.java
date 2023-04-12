@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 
@@ -6,7 +7,8 @@ public class Test {
 
 	public static void main(String[] args) {
 		exercise1();
-		exercise2();
+//		exercise2();
+		exercise2final();
 	}
 
 	private static void exercise1() {
@@ -21,6 +23,23 @@ public class Test {
 
 		System.out.println("get 4: " + map.get(4));
 
+	}
+
+	private static void exercise2final() {
+		Comparator<Integer> comp = new Comparator<Integer>() {
+			public int compare(Integer i1, Integer i2) {
+				return i1.compareTo(i2);
+			}
+		};
+
+		Queue<Integer> myQueue = new LinkedQueue<>();
+		Random rand = new Random();
+		for (int i = 0; i < 10; i++) {
+			myQueue.enqueue(rand.nextInt(100)); // Change 100 to the max value you want
+		}
+		System.out.println("queue original: " + myQueue);
+		MergeSort.mergeSort(myQueue, comp);
+		System.out.println("queue final: " + myQueue);
 	}
 
 	private static void exercise2() {
