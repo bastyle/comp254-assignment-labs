@@ -127,25 +127,6 @@ class MergeSort {
 			System.arraycopy(src, 0, orig, 0, n); // additional copy to get result to original
 	}
 
-	public static <K> void mergeSortBottomUp1(Queue<K> orig, Comparator<K> comp) {
-		int n = orig.size();
-		Queue<K> src = orig; // alias for the original
-		Queue<K> dest = new LinkedQueue<>(); // make a new temporary queue
-		Queue<K> temp; // reference used only for swapping
-		for (int i = 1; i < n; i *= 2) { // each iteration sorts all runs of length i
-			for (int j = 0; j < n; j += 2 * i) { // each pass merges two runs of length i
-				// merge(src, dest, comp, j, i);
-				mergeSort(dest, comp);
-			}
-			temp = src;
-			src = dest;
-			dest = temp; // reverse roles of the queues
-		}
-		while (!src.isEmpty()) { // copy sorted elements back to the original queue
-			orig.enqueue(src.dequeue());
-		}
-	}
-
 	public static <K> Queue<K> mergeSortBottomUp(List<K> orig, Comparator<K> comp) {
 		Queue<Queue<K>> queues = new LinkedQueue<>();
 		for (K item : orig) {
