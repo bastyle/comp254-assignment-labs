@@ -23,6 +23,7 @@
 
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Random;
 
 class MergeSort {
@@ -126,7 +127,7 @@ class MergeSort {
 			System.arraycopy(src, 0, orig, 0, n); // additional copy to get result to original
 	}
 
-	public static <K> void mergeSortBottomUp(Queue<K> orig, Comparator<K> comp) {
+	public static <K> void mergeSortBottomUp1(Queue<K> orig, Comparator<K> comp) {
 		int n = orig.size();
 		Queue<K> src = orig; // alias for the original
 		Queue<K> dest = new LinkedQueue<>(); // make a new temporary queue
@@ -145,20 +146,48 @@ class MergeSort {
 		}
 	}
 
+	public static <K> Queue<K> mergeSortBottomUp(List<K> orig, Comparator<K> comp) {
+		Queue<Queue<K>> queues = new LinkedQueue<>();
+		for (K item : orig) {
+			Queue<K> q = new LinkedQueue<>();
+			q.enqueue(item);
+			queues.enqueue(q);
+		}
+		while (queues.size() > 1) {
+			Queue<K> q1 = queues.dequeue();
+			Queue<K> q2 = queues.dequeue();
+			Queue<K> merged = merge(q1, q2, comp);
+			queues.enqueue(merged);
+		}
+		return queues.dequeue();
+	}
+
+	private static <K> Queue<K> merge(Queue<K> q1, Queue<K> q2, Comparator<K> comp) {
+		Queue<K> result = new LinkedQueue<>();
+		while (!q1.isEmpty() && !q2.isEmpty()) {
+			K item;
+			if (comp.compare(q1.first(), q2.first()) <= 0) {
+				item = q1.dequeue();
+			} else {
+				item = q2.dequeue();
+			}
+			result.enqueue(item);
+		}
+		while (!q1.isEmpty()) {
+			result.enqueue(q1.dequeue());
+		}
+		while (!q2.isEmpty()) {
+			result.enqueue(q2.dequeue());
+		}
+		return result;
+	}
+
 	public static void main(String[] args) {
-//	  Integer[] S = new Integer[]{85, 24, 63, 45, 17, 31, 96, 50};
-		// create a Comparator object
 		Comparator<Integer> comp = new Comparator<Integer>() {
 			public int compare(Integer i1, Integer i2) {
 				return i1.compareTo(i2);
 			}
 		};
-
-//	  mergeSort(S, comp);
-//	  for(Integer i : S)
-//		  System.out.println(i);
-		// Use the implementation of Merge-Sort with Queues to sort a queue of String
-		// objects
 
 		Queue<Integer> myQueue = new LinkedQueue<>();
 		Random rand = new Random();

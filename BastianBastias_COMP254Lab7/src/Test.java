@@ -6,9 +6,9 @@ import java.util.Random;
 public class Test {
 
 	public static void main(String[] args) {
-		exercise1();
+//		exercise1();
 //		exercise2();
-		exercise2final();
+		exercise21();
 	}
 
 	private static void exercise1() {
@@ -25,24 +25,12 @@ public class Test {
 
 	}
 
-	private static void exercise2final() {
+	private static void exercise21() {
 		Comparator<Integer> comp = new Comparator<Integer>() {
 			public int compare(Integer i1, Integer i2) {
 				return i1.compareTo(i2);
 			}
 		};
-
-		Queue<Integer> myQueue = new LinkedQueue<>();
-		Random rand = new Random();
-		for (int i = 0; i < 10; i++) {
-			myQueue.enqueue(rand.nextInt(100)); // Change 100 to the max value you want
-		}
-		System.out.println("queue original: " + myQueue);
-		MergeSort.mergeSort(myQueue, comp);
-		System.out.println("queue final: " + myQueue);
-	}
-
-	private static void exercise2() {
 		List<Integer> items = new ArrayList<Integer>();
 		Random rand = new Random();
 		for (int i = 0; i < 10; i++) {
@@ -53,11 +41,8 @@ public class Test {
 			System.out.print(item + " ");
 		}
 		System.out.println();
-		BottomUpMergeSort<Integer> sorter = new BottomUpMergeSort<>();
-		Queue<Integer> sortedItems = sorter.bottomUpMergeSort(items);
-		System.out.println("merged items: ");
-		while (!sortedItems.isEmpty()) {
-			System.out.print(sortedItems.dequeue() + " ");
-		}
+		Queue<Integer> sortedItems = MergeSort.mergeSortBottomUp(items, comp);
+		System.out.println("merged items: " + sortedItems);
 	}
+	
 }
