@@ -1,10 +1,13 @@
 import java.util.Comparator;
+import java.util.Scanner;
 
 public class ExamPractice {
 
 	public static void main(String[] args) {
-		//practise3();
-		practiceMax() ;
+		// practise3();
+//		practiceMax();
+		
+		counter2();
 	}
 
 	private static void practice1() {
@@ -20,22 +23,22 @@ public class ExamPractice {
 		Position<String> iRight = lbt.addRight(eRight, "I");
 		lbt.computeDepths(lbt, lbt.size());
 	}
-	
+
 	private static void practiceMax() {
 		LinkedBinaryTree<Integer> lbt = new LinkedBinaryTree<>();
 		Position<Integer> root = lbt.addRoot(1);
 		Position<Integer> bLeft = lbt.addLeft(root, 2);
 		Position<Integer> cRight = lbt.addRight(root, 3);
-		
+
 		Position<Integer> dLeft = lbt.addLeft(bLeft, 4);
 		Position<Integer> eRight = lbt.addRight(bLeft, 5);
-		
+
 		Position<Integer> fLeft = lbt.addLeft(cRight, 6);
 		Position<Integer> gRight = lbt.addRight(cRight, 7);
-		
+
 		Position<Integer> hLeft = lbt.addLeft(eRight, 8);
 		Position<Integer> iRight = lbt.addRight(eRight, 9);
-		
+
 		System.out.println(lbt.maxSum(root));
 	}
 
@@ -145,6 +148,56 @@ public class ExamPractice {
 		}
 		return depths;
 	}
-	//https://pages.cpsc.ucalgary.ca/~mdmamunur.rashid1/CPSC319T/codes/QuickSort.java.html
 
+	private static void counter() {
+		System.out.print("Enter word: ");
+		Map<String, Integer> freq = new ChainHashMap<>(0.5f); // or any concrete map
+		try (Scanner scanner = new Scanner(System.in).useDelimiter("[^a-zA-Z]+")) {
+			System.out.print("Enter a text: ");
+			String word = scanner.nextLine().toLowerCase();			
+			String[] words = word.split(" ");
+			for(String w : words) {
+				System.out.print("w = [" + w + "]");
+				Integer count = freq.get(w); // get the previous count for this word
+				if (count == null)
+					count = 0; // if not in map, previous count is zero
+				freq.put(w, 1 + count); // (re)assign new count for this word
+			}
+		}		
+		int maxCount = 0;
+		String maxWord = "no word";
+		for (Entry<String, Integer> ent : freq.entrySet()) // find max-count word
+			if (ent.getValue() > maxCount) {
+				maxWord = ent.getKey();
+				maxCount = ent.getValue();
+			}
+		System.out.print("The most frequent word is '" + maxWord);
+		System.out.println("' with " + maxCount + " occurrences.");
+	}
+	
+	private static void counter2() {
+		System.out.print("Enter word: ");
+		Map<String, Integer> freq = new SortedTableMap<>(); // or any concrete map
+		try (Scanner scanner = new Scanner(System.in).useDelimiter("[^a-zA-Z]+")) {
+			System.out.print("Enter a text: ");
+			String word = scanner.nextLine().toLowerCase();			
+			String[] words = word.split(" ");
+			for(String w : words) {
+				System.out.print("w = [" + w + "]");
+				Integer count = freq.get(w); // get the previous count for this word
+				if (count == null)
+					count = 0; // if not in map, previous count is zero
+				freq.put(w, 1 + count); // (re)assign new count for this word
+			}
+		}		
+		int maxCount = 0;
+		String maxWord = "no word";
+		for (Entry<String, Integer> ent : freq.entrySet()) // find max-count word
+			if (ent.getValue() > maxCount) {
+				maxWord = ent.getKey();
+				maxCount = ent.getValue();
+			}
+		System.out.print("The most frequent word is '" + maxWord);
+		System.out.println("' with " + maxCount + " occurrences.");
+	}
 }
