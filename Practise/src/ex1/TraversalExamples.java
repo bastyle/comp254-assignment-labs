@@ -1,3 +1,4 @@
+package ex1;
 /*
  * Copyright 2014, Michael T. Goodrich, Roberto Tamassia, Michael H. Goldwasser
  *
@@ -122,9 +123,9 @@ public class TraversalExamples {
 	  Position<String> aLeft = lbt.addLeft(minusRight, "a");
 	  Position<String> oneRight = lbt.addRight(minusRight, "1");
 	  //
-	  //parenthesize(lbt, xLeft);
+	  parenthesize(lbt, xLeft);
 
-	  printPreorder(lbt);
+	  //printPreorder(lbt);
   }
   //
   

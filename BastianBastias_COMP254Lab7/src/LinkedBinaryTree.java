@@ -292,4 +292,19 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
     node.setParent(node);                 // our convention for defunct node
     return temp;
   }
+  
+  public double maxSum(Position<E> p) {
+	    if (p == null) {
+	        return 0;
+	    }
+	    //double leftSum = maxSum(root.left(null));//
+	    //Node<E> node = validate(p.getElement());
+	    double leftSum = maxSum(left(p));
+	    double rightSum = maxSum(right(p));
+	    double rootVal = (int) p.getElement();
+	    double maxSum = Math.max(rootVal, Math.max(leftSum + rootVal, rightSum + rootVal));
+	    return maxSum;
+	}
+
+
 } //----------- end of LinkedBinaryTree class -----------
