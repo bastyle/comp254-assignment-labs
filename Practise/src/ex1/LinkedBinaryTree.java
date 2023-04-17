@@ -355,9 +355,12 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
 		bTree.root = new Node_(8);
 		bTree.root.leftValue = new Node_(2);
 		bTree.root.rightValue = new Node_(8);
+		
 		bTree.root.leftValue.leftValue = new Node_(11);
 		bTree.root.leftValue.rightValue = new Node_(1);
+		
 		bTree.root.rightValue.rightValue = new Node_(-20);
+		
 		bTree.root.rightValue.rightValue.leftValue = new Node_(3);
 		bTree.root.rightValue.rightValue.rightValue = new Node_(4);
 		System.out.println("Path sum is : " + bTree.findMaxSum());
